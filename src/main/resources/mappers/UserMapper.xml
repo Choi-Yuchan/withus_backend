@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="withus.ex.mapper.UserMapper">
+
+	<insert id="insert" parameterType="withus.ex.vo.UsersVO">
+        <![CDATA[
+            INSERT INTO withus_users (
+                user_number,
+                user_id,
+                password,
+                phone_number,
+                birth,
+                email,
+                gender,
+                user_name
+            )
+            VALUES (
+                #{userNumber},
+                #{userId},
+                #{password},
+                #{phoneNumber},
+                #{birth},
+                #{email},
+                #{gender},
+                #{userName}
+            )
+        ]]>
+	</insert>
+
+</mapper>
