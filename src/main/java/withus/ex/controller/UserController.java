@@ -29,7 +29,7 @@ public class UserController{
 	    }
 	    
 	    //회원가입
-		@PostMapping("/")
+		@PostMapping("/singup")
 		public String signup(@RequestBody UsersVO usersVO) {
 			
 			log.info("signup()..");
