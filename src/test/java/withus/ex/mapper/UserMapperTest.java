@@ -13,7 +13,8 @@ public class UserMapperTest {
 
     @Autowired
     private UserMapper userMapper;
-
+   
+    //회원가입테스트
     @Test
     void insert() {
         UsersVO user = new UsersVO();
@@ -30,4 +31,14 @@ public class UserMapperTest {
         userMapper.insert(user);
         // userMapper.insertAuthorities(user); // Commented for now, based on your requirement
     }
+    
+    //회원정보조회테스트
+    @Test
+    void selectUserInfo() {
+        UsersVO user = new UsersVO();
+        
+        user.setUserNumber(1);
+      
+    
+}
 }
