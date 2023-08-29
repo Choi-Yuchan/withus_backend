@@ -5,35 +5,58 @@
 
 <mapper namespace="withus.ex.mapper.UserMapper">
 
+
+
+
+
+
 	<insert id="insert" parameterType="withus.ex.vo.UsersVO">
         <![CDATA[
             INSERT INTO withus_users (
                 user_number,
+                user_name
                 user_id,
                 password,
                 phone_number,
+            	user_addr1,
+            	user_addr2,
+            	user_addr3,
                 birth,
-                email,
-                gender,
-                user_name
+                gender
+              
             )
             VALUES (
                 #{userNumber},
+                #{userName}
                 #{userId},
                 #{password},
                 #{phoneNumber},
+                #{addr1},
+                #{addr2},
+                #{addr3},
                 #{birth},
-                #{email},
-                #{gender},
-                #{userName}
+                #{gender}       
             )
         ]]>
 	</insert>
 
+<!-- 이름 다르니까 매핑해주기 -->
+	<resultMap id="usersMap" type="withus.ex.vo.UsersVO">
+		<id property="userNumber" column="user_number" />		
+		<result property="userName" column="user_name" />
+		<result property="userId" column="user_id" />
+		<result property="password" column=" password" />
+		<result property="phoneNumber" column="phone_number" />
+		<result property="addr1" column="user_addr1" />
+		<result property="addr2" column="user_addr2" />
+		<result property="addr3" column="user_addr3" />
+		<result property="birth" column="birth" />
+		<result property="gender" column="gender" />
+	</resultMap>
+
 
 	<!-- 회원 정보 조회 -->
-	<select id="selectUserInfo" parameterType="java.lang.String"
-		resultType="withus.ex.vo.UsersVO">
+	<select id="selectUserInfo" resultMap="usersMap">
 			<![CDATA[
 			SELECT * FROM withus_users WHERE USER_NUMBER = #{userNumber}
 			]]>
@@ -42,5 +65,3 @@
 
 </mapper>
 
-
-<!-- 기가지니랑 <![CDATA[ ]]> 오류잡혔는지 확인하기 (옷입혔는지) -->
