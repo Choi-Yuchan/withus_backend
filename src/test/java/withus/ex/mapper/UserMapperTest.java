@@ -13,32 +13,32 @@ public class UserMapperTest {
 
     @Autowired
     private UserMapper userMapper;
-   
-    //회원가입테스트
+
     @Test
     void insert() {
         UsersVO user = new UsersVO();
-        user.setUserNumber(1);
+        
+        user.setUserNumber(3);
+        user.setUserName("user3");
         user.setUserId("user3");
         user.setPassword("user3");
         user.setPhoneNumber("1234567890");
-        user.setBirth(new Date(2000,10,25));
-        user.setEmail("user3@example.com");
-        user.setGender('M');
-        user.setUserName("user3");
-      //  user.setEnabled(1); // Set the enabled value
-        
+        user.setAddr1("서울시");
+        user.setAddr2("강동구");
+        user.setAddr3("어딘가");
+        user.setBirth(new Date(2000 - 1900, 9, 25)); // Month starts from 0
+        user.setGender("M");
+
         userMapper.insert(user);
-        // userMapper.insertAuthorities(user); // Commented for now, based on your requirement
+      //  userMapper.insertAuthorities(user); 
     }
     
-    //회원정보조회테스트
+    //회원정보조회테스트// List<UsersVO> selectUserInfo(Integer userNumber);
     @Test
     void selectUserInfo() {
-        UsersVO user = new UsersVO();
-        
-        user.setUserNumber(1);
-      
-    
-}
+        int userNumber = 1;
+
+        UsersVO user = userMapper.selectUserInfo(userNumber);
+
+    }
 }
