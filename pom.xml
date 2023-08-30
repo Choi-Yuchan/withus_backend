@@ -72,6 +72,15 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+		
+		<!-- 결제 API -->
+		<dependency>
+	    <groupId>com.github.iamport</groupId>
+	    <artifactId>iamport-rest-client-java</artifactId>
+	    <version>0.2.23</version>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
@@ -111,6 +120,14 @@
 				<enabled>false</enabled>
 			</releases>
 		</repository>
+		
+		
+		<!-- 결제 API -->
+	<repository>
+	    <id>jitpack.io</id>
+	    <url>https://jitpack.io</url>
+	</repository>
+		
 	</repositories>
 	<pluginRepositories>
 		<pluginRepository>
@@ -130,5 +147,6 @@
 			</releases>
 		</pluginRepository>
 	</pluginRepositories>
+	
 
 </project>
