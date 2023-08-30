@@ -1,7 +1,6 @@
 package withus.ex.mapper;
 
 import java.sql.Date;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +13,12 @@ public class UserMapperTest {
 
     @Autowired
     private UserMapper userMapper;
-   
-    //회원가입테스트: void insert(UsersVO user); //회원가입
 
     @Test
     void insert() {
         UsersVO user = new UsersVO();
-        user.setUserNumber(1);
+        
+        user.setUserNumber(3);
         user.setUserName("user3");
         user.setUserId("user3");
         user.setPassword("user3");

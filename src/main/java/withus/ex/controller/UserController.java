@@ -30,8 +30,17 @@ public class UserController {
 	@Autowired // 회원정보조회 서비스 주입
 	private GetUserInfoService getUserInfoService;
 
+	//회원가입뷰
+	@GetMapping("/signup_view")
+	public String signup_view() {
+		log.info("signup_view()..");
+
+		return "SUCCESS";
+	}
+	
+	
 	// 회원가입
-	@PostMapping("/singup")
+	@PostMapping("/signup")
 	public String signup(@RequestBody UsersVO usersVO) {
 		log.info("signup()..");
 		signUpService.signup(usersVO);
