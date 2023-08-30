@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="withus.ex.mapper.UserMapper">
+
+   <!-- DB테이블 하고 VO객체를 매핑, 조인이니까 resultMap사용함 -->
+   <resultMap id="productListMap" type="productListVO">
+      <result property="product_number" column="product_number" /> <!-- userVO의 속성인 getUsername()하고 DB테이블의 컬럼인 username이 매핑됨 -->
+      <result property="product_img_number" column="product_img_number" />
+      <result property="product_name" column="product_name" />
+      <result property="product_img" column="product_img" />
+      <result property="price" column="price" />
+      <result property="order_quantity" column="order_quantity" />
+      <result property="explanation" column="explanation" />
+      <collection property="authList" resultMap="authMap"></collection> 
+   </resultMap>
+   
+   <select id="getUser" resultMap="userMap"> <!-- 부모매퍼인터페이스를 구현한거임 -->
+      select * from users , authorities
+      where users.username = authorities.username and users.username = #{username}
+      
+   </select>
+
+
+
+
+
+</mapper>
