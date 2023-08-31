@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +20,7 @@ import withus.ex.service.GetUserInfoService;
 import withus.ex.service.SignUpService;
 import withus.ex.vo.UsersVO;
 
+@CrossOrigin("http://localhost:3000")
 @Slf4j
 @RestController
 @RequestMapping("/user/*")
