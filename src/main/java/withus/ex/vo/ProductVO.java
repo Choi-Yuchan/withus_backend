@@ -11,7 +11,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class productVO {
+public class ProductVO {
 	
 	   private int product_number;
 	   private int product_img_number;
