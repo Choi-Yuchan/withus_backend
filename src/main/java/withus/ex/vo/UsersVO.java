@@ -28,16 +28,19 @@ USER_NAME             VARCHAR2(20) */
 @ToString
 public class UsersVO {
 	private int userNumber;
+	private String userName;
 	private String userId;
 	private String password;
 	private String phoneNumber;
+	private String addr1;
+	private String addr2;
+	private String addr3;	
 	private Date birth;
-	private String email;
-	private char gender;
-	private String userName;
+	private String gender;
 	
-	//private int enabled;
+	
+	private int enabled;
 	// DB에있는 테이블 받아오기 (유저1:권한N)위해 권한atuhVO를 리스트로 만든다.
-	//private List<AuthVO> authList;
+	private List<AuthVO> authList;
 
 }
