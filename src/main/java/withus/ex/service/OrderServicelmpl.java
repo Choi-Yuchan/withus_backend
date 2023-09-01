@@ -24,7 +24,7 @@ public class OrderServicelmpl implements OrderService{
 		
 		for(OrderPageItemVO ord : orders) {
 			
-			OrderPageItemVO goodsInfo = orderMapper.getGoodsInfo(ord.getProductNumber());			
+			OrderPageItemVO goodsInfo = orderMapper.getGoodsInfo(ord.getProduct_number());			
 
 			goodsInfo.setQuantity(ord.getQuantity());	
 			
