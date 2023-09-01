@@ -64,4 +64,13 @@ public class UserController {
 	}
 	
 	
+	// 회원정보 수정
+	@PostMapping("/signup")
+	public String signup(@RequestBody UsersVO usersVO) {
+		log.info("signup()..");
+		signUpService.signup(usersVO);
+
+		return "SUCCESS";
+	}
+	
 }

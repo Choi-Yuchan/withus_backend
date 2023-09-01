@@ -53,5 +53,46 @@
         SELECT * FROM withus_users WHERE USER_NUMBER = #{userNumber}
         ]]>
 	</select>
+	
+	
+	<!-- 회원 정보 수정 -->
+	<select id="selectUserInfo" resultMap="usersMap">
+        <![CDATA[
+        SELECT * FROM withus_users WHERE USER_NUMBER = #{userNumber}
+        ]]>
+	</select>
+	
+	<insert id="insert" parameterType="withus.ex.vo.UsersVO">
+        <![CDATA[
+            INSERT INTO withus_users (
+                user_number,
+                user_name,
+                user_id,
+                password,
+                phone_number,
+                user_addr1,
+                user_addr2,
+                user_addr3,
+                birth,
+                gender
+            )
+            VALUES (
+                #{userNumber},
+                #{userName},
+                #{userId},
+                #{password},
+                #{phoneNumber},
+                #{addr1},
+                #{addr2},
+                #{addr3},
+                #{birth},
+                #{gender}
+            )
+        ]]>
+	</insert>
+	
+	
+	
+	
 
 </mapper>

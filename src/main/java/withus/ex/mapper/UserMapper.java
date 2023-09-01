@@ -16,6 +16,9 @@ public interface UserMapper {
     UsersVO selectUserInfo(int userNumber); //회원정보조회
     
     
+    void modify(UsersVO user); //회원정보 수정
+    
+    
     
     //회원가입 + 권한설정
     
