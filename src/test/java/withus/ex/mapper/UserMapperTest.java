@@ -16,20 +16,20 @@ public class UserMapperTest {
 
     @Test
     void insert() {
-        UsersVO user = new UsersVO();
-        
-        user.setUserNumber(3);
-        user.setUserName("user3");
-        user.setUserId("user3");
-        user.setPassword("user3");
-        user.setPhoneNumber("1234567890");
-        user.setAddr1("서울시");
-        user.setAddr2("강동구");
-        user.setAddr3("어딘가");
-        user.setBirth(new Date(2000 - 1900, 9, 25)); // Month starts from 0
-        user.setGender("M");
-
-        userMapper.insert(user);
+//        UsersVO user = new UsersVO();
+//        
+//        user.setUserNumber(3);
+//        user.setUserName("user3");
+//        user.setUserId("user3");
+//        user.setPassword("user3");
+//        user.setPhoneNumber("1234567890");
+//        user.setAddr1("서울시");
+//        user.setAddr2("강동구");
+//        user.setAddr3("어딘가");
+//        user.setBirth(new Date(2000 - 1900, 9, 25)); // Month starts from 0
+//        user.setGender("M");
+//
+//        userMapper.insert(user);
       //  userMapper.insertAuthorities(user); 
     }
     

@@ -1,11 +1,7 @@
 package withus.ex.mapper;
 
 
-import java.util.List;
-
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
 
 import withus.ex.vo.UsersVO;
 
@@ -16,14 +12,15 @@ public interface UserMapper {
     UsersVO selectUserInfo(int userNumber); //회원정보조회
     
     
+    //로그인+권한관련
+    public UsersVO getUser(String userId);   
     
-    //회원가입 + 권한설정
-    
-//    @Insert("insert into users(userid,password,enabled) values(#{userid},#{password},#{enabled})")
-//    public int insertUser(UsersVO usersVO);
+//    @Insert("insert into withus_users(userId,password,enabled) values(#{user_id},#{password},#{enabled})")
+//    public int insertUser(UsersVO userVO);
 //
-//    @Insert("insert into withus_auth (user_id,AUTHORITY) values(#{userid},'ROLE_USER')")
-//    public void insertAuthorities(UsersVO UsersVO);
+//    @Insert("insert into withus_auth (userNumber,authority) values(#{user_number},'ROLE_USER')")
+//    public void insertAuthorities(UsersVO UserVO);
+
 
     
     
