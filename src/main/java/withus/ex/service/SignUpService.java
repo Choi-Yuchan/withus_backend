@@ -7,7 +7,7 @@ import withus.ex.vo.UsersVO;
 
 public interface SignUpService{
 
-	void signup(UsersVO usersVO); // 회원가입
+	void signup(UsersVO user); // 회원가입
 	
 	
 }
