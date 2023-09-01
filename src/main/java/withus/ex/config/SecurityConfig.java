@@ -44,8 +44,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	  
 	  @Override //권한인증 설정해주기
 	   protected void configure(HttpSecurity http) throws Exception {
-	      http.csrf(csrf -> csrf.disable());
-	      http.authorizeHttpRequests()
+	      http.csrf(csrf -> csrf.disable()); //공격에 대한 방어해제
+	      http.authorizeHttpRequests() //페이지에권한부여
 //	        .antMatchers("/user/**").hasAnyRole("USER")
 //	        .antMatchers("/admin/**").hasAnyRole("ADMIN")
 	        .antMatchers("/**").permitAll();
