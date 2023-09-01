@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="withus.ex.mapper.UserMapper">
+
+	<insert id="insert" parameterType="withus.ex.vo.UsersVO">
+        <![CDATA[
+            INSERT INTO withus_users (
+                user_number,
+                user_name,
+                user_id,
+                password,
+                phone_number,
+                user_addr1,
+                user_addr2,
+                user_addr3,
+                birth,
+                gender,
+                authority
+                
+            )
+            VALUES (
+                #{userNumber},
+                #{userName},
+                #{userId},
+                #{password},
+                #{phoneNumber},
+                #{addr1},
+                #{addr2},
+                #{addr3},
+                #{birth},
+                #{gender},
+                'ROLE_USER'
+            )
+        ]]>
+	</insert>
+
+	<resultMap id="usersMap" type="withus.ex.vo.UsersVO">
+		<id property="userNumber" column="user_number" />
+		<result property="userName" column="user_name" />
+		<result property="userId" column="user_id" />
+		<result property="password" column="password" />
+		<result property="phoneNumber" column="phone_number" />
+		<result property="addr1" column="user_addr1" />
+		<result property="addr2" column="user_addr2" />
+		<result property="addr3" column="user_addr3" />
+		<result property="birth" column="birth" />
+		<result property="gender" column="gender" />
+		<result property="authority" column="authority" />
+	</resultMap>
+
+	<!-- 회원 정보 조회 -->
+	<select id="selectUserInfo" resultMap="usersMap">
+        <![CDATA[
+        SELECT * FROM withus_users WHERE USER_NUMBER = #{userNumber}
+        ]]>
+	</select>
+
+</mapper>
