@@ -26,6 +26,6 @@ public class OrderController{
 		
 		model.addAttribute("orderList", orderService.getGoodsInfo(opd.getOrders()));
 		
-		return "/order";//
+		return "/order";
 	}
 }
