@@ -63,10 +63,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //	      .antMatchers("/admin/**").hasAnyRole("ADMIN") //관리자페이지권한
 	      .antMatchers("/**").permitAll(); //모든 경로에 대해 인증되지 않은 사용자도 접근을 허용 (모두에게)  
 	      
-	      http.formLogin() //스프링 시큐리티에 있는 기본 로그인 폼을 사용하겠다는뜻
+//	      http.formLogin() //스프링 시큐리티에 있는 기본 로그인 폼을 사용하겠다는뜻
 	      	//.loginPage() //loginPage()는 말그대로 로그인할 페이지 url이고
-	      	.defaultSuccessUrl("/")//로그인 성공후 메인으로 가도록
-	      	.permitAll(); //모든 유저가 로그인화면을 볼 수 있게 한다
+//	      	.defaultSuccessUrl("/")//로그인 성공후 메인으로 가도록
+//	      	.permitAll(); //모든 유저가 로그인화면을 볼 수 있게 한다
 	  }
 	    
 }
