@@ -1,5 +1,4 @@
-package withus.ex.config
-;
+package withus.ex.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -33,32 +32,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	   }    //리소스파일들은 시큐리티세팅에서 관리하지 않도록
 	
 	 
-	  @Override //테스트용 아디비번 설정
+	  @Override 
 	   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//	       auth.inMemoryAuthentication()// 테스트용 임시 아디비번
-//	               .withUser("user").password("{noop}user").roles("USER").and() //user아이디로 로그인하게되면user자격얻음
-//	               .withUser("admin").password("{noop}admin").roles("ADMIN");
-//		  
 		auth.userDetailsService(customUserDetailsService).passwordEncoder(new BCryptPasswordEncoder());
 	   }
 	  
 	  @Override //권한인증 설정해주기
 	   protected void configure(HttpSecurity http) throws Exception {
-	      http.csrf(csrf -> csrf.disable()); //공격에 대한 방어해제
-	      http.authorizeHttpRequests() //페이지에권한부여
-//	        .antMatchers("/user/**").hasAnyRole("USER")
-//	        .antMatchers("/admin/**").hasAnyRole("ADMIN")
+	      http.csrf().disable(); //공격에 대한 방어해제
+	      http.authorizeRequests() //페이지에권한부여
+	        .antMatchers("/user/**").hasAnyRole("USER") //user부분권한설정(user만접근가능
+	        .antMatchers("/order/**").hasAnyRole("USER")
 	        .antMatchers("/**").permitAll();
 
-	      http.authorizeRequests() // 인증과 권한을 설정
-//	      .antMatchers("/user/**").hasAnyRole("USER")  // 경로 패턴을 지정,권한있는자만 접근가능하게//user아이디로 로그인하게되면user자격얻음
-//	      .antMatchers("/admin/**").hasAnyRole("ADMIN") //관리자페이지권한
-	      .antMatchers("/**").permitAll(); //모든 경로에 대해 인증되지 않은 사용자도 접근을 허용 (모두에게)  
+	//      http.authorizeRequests() // 인증과 권한을 설정
+	//      .antMatchers("/user/**").hasAnyRole("USER")  // 경로 패턴을 지정,권한있는자만 접근가능하게//user아이디로 로그인하게되면user자격얻음
+	//      .antMatchers("/**").permitAll(); //모든 경로에 대해 인증되지 않은 사용자도 접근을 허용 (모두에게)  
 	      
 	      http.formLogin() //스프링 시큐리티에 있는 기본 로그인 폼을 사용하겠다는뜻
-	      	//.loginPage() //loginPage()는 말그대로 로그인할 페이지 url이고
+	      	//.loginPage("/login") //loginPage()는 말그대로 로그인할 페이지 url이고
 	      	.defaultSuccessUrl("/")//로그인 성공후 메인으로 가도록
 	      	.permitAll(); //모든 유저가 로그인화면을 볼 수 있게 한다
-	  }
+	//  }
 	    
+	  }
 }
