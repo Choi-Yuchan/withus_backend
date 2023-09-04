@@ -39,7 +39,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	   public void configure(WebSecurity web) throws Exception {
 	      web.ignoring().antMatchers("/css/**","/fonts/**", "/js/**", "/imges/**", "/lib/**");
 	   }    //리소스파일들은 시큐리티세팅에서 관리하지 않도록
-	
 	 
 	  @Override 
 	   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -73,5 +72,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
 	      
-	  }	  
+	  }	 
+	  
 }
