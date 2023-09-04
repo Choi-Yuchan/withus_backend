@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
 import withus.ex.service.GetUserInfoService;
+import withus.ex.service.ModifyUserInfoService;
 import withus.ex.service.SignUpService;
 import withus.ex.vo.UsersVO;
 
@@ -29,7 +30,11 @@ public class UserController {
 
 	@Autowired // 회원정보조회 서비스 주입
 	private GetUserInfoService getUserInfoService;
-
+	
+	@Autowired // 회원정보 수정 
+	private ModifyUserInfoService modifyUserInfoService; // 추가된 부분
+	
+    
 	//회원가입뷰
 	@GetMapping("/signup_view")
 	public String signup_view() {
@@ -64,13 +69,24 @@ public class UserController {
 	}
 	
 	
-	// 회원정보 수정
-	@PostMapping("/signup")
-	public String signup(@RequestBody UsersVO usersVO) {
-		log.info("signup()..");
-		signUpService.signup(usersVO);
-
-		return "SUCCESS";
-	}
 	
+    // modifiedUser, modifyUserInfo 이렇게 변경함 modifyUserInfoService(변경전이름)
+	// 겹치기도하고 가독성 떨어져서... 근데 바꿔도 되는지 물어보기 파일이 없으니까
+	
+	// 회원정보 수정
+	@PostMapping("/modifyUserInfoService/{userNumber}") // 추가된 부분
+	public ResponseEntity<String> modifyUserInfoService(
+	    @PathVariable int userNumber,
+	    @RequestBody UsersVO modifiedUser
+	) {
+	    log.info("modifyUserInfoService() for userNumber: {}", userNumber);
+	
+	    boolean isSuccess = modifyUserInfoService.modify(userNumber);
+	
+	    if (isSuccess) {
+	        return ResponseEntity.ok("SUCCESS");
+	    } else {
+	        return ResponseEntity.badRequest().body("Failed to update user information.");
+	    }
+	}
 }

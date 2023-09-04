@@ -1,12 +1,26 @@
 package withus.ex.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-
+import lombok.extern.slf4j.Slf4j;
+import withus.ex.mapper.UserMapper;
 import withus.ex.vo.UsersVO;
 
+@Slf4j
+@Service
+public interface ModifyUserInfoServicelmpl implements ModifyUserInfoService {
+	
+	@Autowired // 주입
+	private UserMapper userMapper;
+	
 
-public interface ModifyUserInfoServicelmpl{
+	// 회원정보수정
+	@Override
+	public void modifyUserInfo(UsersVO user) {
 
-	UsersVO getUserInfoList(int userNumber); // 회원정보조회
+		log.info("modify()..");
+		userMapper.modify(user);
+	}
 	
 }

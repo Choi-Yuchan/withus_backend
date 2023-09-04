@@ -7,6 +7,5 @@ import withus.ex.vo.UsersVO;
 
 public interface ModifyUserInfoService{
 
-	UsersVO getUserInfoList(int userNumber); // 회원정보조회
-	
+	void modify(UsersVO user); //회원정보수정
 }

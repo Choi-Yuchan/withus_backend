@@ -7,15 +7,16 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+
+import org.apache.ibatis.annotations.Param;
+
 import withus.ex.vo.UsersVO;
 
 
 @Mapper
 public interface UserMapper {
     void insert(UsersVO user); //회원가입
-    UsersVO selectUserInfo(int userNumber); //회원정보조회
-    
-    
+    UsersVO selectUserInfo(int userNumber); //회원정보조회    
     void modify(UsersVO user); //회원정보 수정
     
     
@@ -28,7 +29,6 @@ public interface UserMapper {
 //    @Insert("insert into withus_auth (user_id,AUTHORITY) values(#{userid},'ROLE_USER')")
 //    public void insertAuthorities(UsersVO UsersVO);
 
-    
     
 }
 
