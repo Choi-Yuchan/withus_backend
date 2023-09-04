@@ -1,25 +1,27 @@
 package withus.ex.controller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
 import withus.ex.service.SignUpService;
 import withus.ex.vo.UsersVO;
 
 @Slf4j
-@Controller
-public class LoginController{
-	
+@RestController
+public class LoginController {
+
 	@Autowired // 회원가입 서비스 주입
 	private SignUpService signUpService;
-	
-	
 
-	
+
 	// 회원가입
 	@PostMapping("/signup")
 	public String signup(@RequestBody UsersVO usersVO) {
@@ -28,16 +30,13 @@ public class LoginController{
 
 		return "SUCCESS";
 	}
-	
+
+
 	@GetMapping("/login")
-	public void login() {
-//		return "SUCCESS"; 
+	public String login(Authentication authentication, Principal principal) {		
+		System.out.println("Principal 유저 아이디:" + principal);
+		return "SUCCESS";
 	}
 	
 
-	
-	
-
-	
-	
 }
