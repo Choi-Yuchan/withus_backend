@@ -46,8 +46,7 @@ class UserControllerTest {
 //       log.info(jsonStr);
 //       
 //       mockMvc.perform(post("/user/signup")
-//             .contentType(MediaType
-//            		 .APPLICATION_JSON)
+//             .contentType(MediaType.APPLICATION_JSON)
 //             .content(jsonStr))
 //          .andExpect(status().is(200))
 //          .andDo(MockMvcResultHandlers.print());

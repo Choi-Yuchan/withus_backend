@@ -5,36 +5,6 @@
 
 <mapper namespace="withus.ex.mapper.UserMapper">
 
-
-	<insert id="insert" parameterType="withus.ex.vo.UsersVO">
-        <![CDATA[
-            INSERT INTO withus_users (
-                user_number,
-                user_name,
-                user_id,
-                password,
-                phone_number,
-                user_addr1,
-                user_addr2,
-                user_addr3,
-                birth,
-                gender
-            )
-            VALUES (
-                #{userNumber},
-                #{userName},
-                #{userId},
-                #{password},
-                #{phoneNumber},
-                #{addr1},
-                #{addr2},
-                #{addr3},
-                #{birth},
-                #{gender}
-            )
-        ]]>
-	</insert>
-
 	<resultMap id="usersMap" type="withus.ex.vo.UsersVO">
 		<id property="userNumber" column="user_number" />
 		<result property="userName" column="user_name" />
@@ -46,25 +16,14 @@
 		<result property="addr3" column="user_addr3" />
 		<result property="birth" column="birth" />
 		<result property="gender" column="gender" />
+		<collection property="authList" resultMap="authMap"></collection>
 	</resultMap>
 
-	<!-- 회원 정보 조회 -->
-	<select id="selectUserInfo" resultMap="usersMap">
-        <![CDATA[
-        SELECT * FROM withus_users WHERE USER_NUMBER = #{userNumber}
-        ]]>
-	</select>
-	
-	
-	
-	
-	<!-- 회원 정보 수정 -->
-	<select id="selectUserInfo" resultMap="usersMap">
-        <![CDATA[
-        SELECT * FROM withus_users WHERE USER_NUMBER = #{userNumber}
-        ]]>
-	</select>
-	
+	<resultMap id="authMap" type="withus.ex.vo.AuthVO">
+		<result property="userId" column="user_id" />
+		<result property="authority" column="authority" />
+	</resultMap>
+
 	<insert id="insert" parameterType="withus.ex.vo.UsersVO">
         <![CDATA[
             INSERT INTO withus_users (
@@ -77,7 +36,9 @@
                 user_addr2,
                 user_addr3,
                 birth,
-                gender
+                gender,
+                authority
+                
             )
             VALUES (
                 #{userNumber},
@@ -89,28 +50,35 @@
                 #{addr2},
                 #{addr3},
                 #{birth},
-                #{gender}
+                #{gender},
+                'ROLE_USER'
             )
         ]]>
 	</insert>
 
+	<insert id="insertAuth" parameterType="withus.ex.vo.UsersVO">
+        <![CDATA[
+      		insert into withus_auth values(#{userId}, 'ROLE_USER')
+        ]]>
+	</insert>
 
-	<!-- 회원 정보 수정 -->
-	<update id="modify" parameterType="withus.ex.vo.UsersVO">
-		UPDATE withus_users
-		SET
-		user_number = #{userNumber},
-		user_name = #{userName},
-		user_id = #{userId},
-		password = #{password},
-		phone_number = #{phoneNumber},
-		user_addr1 = #{addr1},
-		user_addr2 = #{addr2},
-		user_addr3 = #{addr3},
-		birth = #{birth},
-		gender = #{gender},
-		
-		WHERE userNumber = #{userNumber}
-	</update>
+
+
+
+	<!-- 회원 정보 조회 -->
+	<select id="selectUserInfo" resultMap="usersMap">
+        <![CDATA[
+        SELECT * FROM withus_users WHERE USER_NUMBER = #{userNumber}
+        ]]>
+	</select>
+
+	<!-- 로그인 권한조회 -->
+	<select id="getUser" resultMap="usersMap">
+		 <![CDATA[
+		select * from withus_users , withus_auth
+		where withus_users.user_id= withus_auth.user_id and withus_users.user_id = #{userId}		
+		]]>
+	</select>
+
+
 </mapper>
-	

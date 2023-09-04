@@ -39,8 +39,8 @@ public class UsersVO {
 	private String gender;
 	
 	
-	//private int enabled;
+	private int enabled;
 	// DB에있는 테이블 받아오기 (유저1:권한N)위해 권한atuhVO를 리스트로 만든다.
-	//private List<AuthVO> authList;
+	private List<AuthVO> authList;
 
 }
