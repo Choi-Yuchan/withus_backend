@@ -51,7 +51,6 @@ public void setAuthorities(UsersVO userVO) {
 
 @Override
 public Collection<? extends GrantedAuthority> getAuthorities() {
-   // TODO Auto-generated method stub
    return this.authorities;
 }
 

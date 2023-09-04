@@ -22,23 +22,22 @@ public class UserMapperTest {
     void insert() {
         UsersVO user = new UsersVO();
         
-        user.setUserNumber(3);
-        user.setUserName("user3");
-        user.setUserId("user3");
-        user.setPassword(new BCryptPasswordEncoder().encode("user3"));
+        user.setUserNumber(1);
+        user.setUserName("user1");
+        user.setUserId("user1");
+        user.setPassword(new BCryptPasswordEncoder().encode("user1"));
         user.setPhoneNumber("1234567890");
         user.setAddr1("서울시");
         user.setAddr2("강동구");
         user.setAddr3("어딘가");
         user.setBirth(new Date(2000 - 1900, 9, 25)); // Month starts from 0
         user.setGender("M");
-        List<AuthVO> authList = new ArrayList<>();
-        AuthVO auth = new AuthVO();
-        auth.setUserId("user3");
-        auth.setAuthority("ROLE_USER");
-        authList.add(auth);
-        user.setAuthList(authList);
-
+//        List<AuthVO> authList = new ArrayList<>();
+//        AuthVO auth = new AuthVO();
+//        auth.setUserId("user1");
+//        auth.setAuthority("ROLE_USER");
+//        authList.add(auth);
+//        user.setAuthList(authList);
         userMapper.insert(user);
         userMapper.insertAuth(user); 
     }
