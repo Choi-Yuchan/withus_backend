@@ -1,6 +1,7 @@
 package withus.ex.controller;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -13,25 +14,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;
+import withus.ex.service.ProductListService;
 import withus.ex.service.ProductService;
+import withus.ex.vo.ProductImgVO;
 import withus.ex.vo.ProductVO;
 import withus.ex.vo.UsersVO;
 
 @Controller
-@RequestMapping("/shop/*")
-@Slf4j
-public class ProductController<getproductlist> {
+@RequestMapping("/product")
+@Log4j2
+public class ProductController {
 
 //	private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 
 	@Autowired
 	private ProductService productService;
+	
+	@Autowired
+	private ProductListService productListService;
 
 //// 회원 탈퇴 처리
 //    @RequestMapping(value = "/withdraw", method = RequestMethod.POST)
@@ -92,12 +100,34 @@ public class ProductController<getproductlist> {
 //        return "redirect:/shop/login"; // login.jsp와 같은 로그인 페이지 이름
 //    }
 	//전체 상품 리스트
-    @GetMapping("/list")
-    @ResponseBody
-    public List<ProductVO> productList() {
-    	return productService.getProductlist();
-    	
-    }
+	
+	@GetMapping("/product/{productNumber}")
+	@ResponseBody
+	public ProductVO productDetail(@PathVariable int productNumber) {
+		log.info("productDetail()... ");
+	    ProductVO detail = productService.getProduct(productNumber);
+	    return detail;
+	}
+
+    
+    
+	@GetMapping("/productList")
+	@ResponseBody
+	public List<Object> productList() {
+	    List<Object> combinedList = new ArrayList<>();
+	    
+	    List<ProductVO> productList = productListService.getProductlist();
+	    List<ProductImgVO> productImgList = productListService.getProductImglist();
+	    
+	    // productList와 productImgList를 합쳐서 combinedList에 추가
+	    combinedList.addAll(productList);
+	    combinedList.addAll(productImgList);
+	    
+	    return combinedList;
+	}
+    
+    
+
 //    
 //// 카테고리별 상품 리스트
 //	@RequestMapping(value = "/list", method = RequestMethod.GET)

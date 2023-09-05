@@ -7,11 +7,27 @@
 <mapper namespace="withus.ex.mapper.ProductMapper">
 
 	<select id="selectList" resultMap="productListMap">
-		<![CDATA[
-			select * from withus_product
+	<![CDATA[
+		select * from withus_product
+	]]>
+	</select>
+<!-- 		<![CDATA[
+			select * from withus_product p, withus_product_img pi
+			where p.product_number = pi.product_number and withus_product = #{productNumber}
+		]]> -->
+	<!-- 	<![CDATA[
+			select * from withus_product_img
+		]]> -->
+		
+	<select id="selectImgList" resultMap="productImgMap">
+	 	select * from withus_product_img
+	</select>
+	<select id="selectDetail" resultMap="productListMap">
+	<![CDATA[
+			select * from withus_product p, withus_product_img pi
+			where p.product_number = pi.product_number and p.product_number = #{productNumber}
 		]]>
 	</select>
-
 
    <!-- DB테이블 하고 VO객체를 매핑, 조인이니까 resultMap사용함 -->
    <resultMap id="productListMap" type="withus.ex.vo.ProductVO">
@@ -22,6 +38,17 @@
       <result property="price" column="price" />
       <result property="order_quantity" column="order_quantity" />
       <result property="explanation" column="explanation" />
+	<collection property="imgList" resultMap="productImgMap" />
+   
+   </resultMap>   
+    
+      <!-- DB테이블 하고 VO객체를 매핑, 조인이니까 resultMap사용함 -->
+   <resultMap id="productImgMap" type="withus.ex.vo.ProductImgVO">
+      <result property="product_img_number" column="product_img_number" /> <!-- userVO의 속성인 getUsername()하고 DB테이블의 컬럼인 username이 매핑됨 -->
+      <result property="product_number" column="product_number" />
+      <result property="image_type" column="image_type" />
+      <result property="file_name" column="file_name" />
+
   
    </resultMap>
 <!--    

@@ -7,14 +7,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import lombok.extern.slf4j.Slf4j;
+
 import withus.ex.mapper.ProductMapper;
 import withus.ex.vo.ProductImgVO;
 import withus.ex.vo.ProductVO;
 
 @Service
-@Slf4j
-public class ProductServiceImpl implements ProductService {
+public class ProductListServiceImpl implements ProductListService {
 
 	@Autowired
 	private ProductMapper productMapper;
@@ -24,18 +23,12 @@ public class ProductServiceImpl implements ProductService {
 	public List<ProductVO> getProductlist() {
 		return productMapper.selectList();
 	}
-
+	
 	@Override
 	public List<ProductImgVO> getProductImglist() {
 		return productMapper.selectImgList();
 	}
-	
-	@Override
-	public ProductVO getProduct(int productNumber) {
-		return productMapper.selectDetail(productNumber);
-	}
 
-	
 	// 상품 조회
 //	@Override
 //	public ProductVO goodsView(int gdsNum) throws Exception {
