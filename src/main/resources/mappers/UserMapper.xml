@@ -31,13 +31,6 @@
         ]]>
 	</select>
 	
-	<!-- 회원 정보 수정 -->
-	<select id="selectUserInfo" resultMap="usersMap">
-        <![CDATA[
-        SELECT * FROM withus_users WHERE USER_NUMBER = #{userNumber}
-        ]]>
-	</select>
-	
 	<insert id="insert" parameterType="withus.ex.vo.UsersVO">
         <![CDATA[
             INSERT INTO withus_users (
@@ -87,21 +80,19 @@
 
 
 	<!-- 회원 정보 수정 -->
-	<update id="modify" parameterType="withus.ex.vo.UsersVO">
-		UPDATE withus_users
-		SET
-		user_number = #{userNumber},
-		user_name = #{userName},
+	<update id="updateUserInfo" >
+	<![CDATA[
+		update withus_users SET	user_name = #{userName},
 		user_id = #{userId},
 		password = #{password},
 		phone_number = #{phoneNumber},
 		user_addr1 = #{addr1},
 		user_addr2 = #{addr2},
 		user_addr3 = #{addr3},
-		birth = #{birth},
-		gender = #{gender},
-		
-		WHERE userNumber = #{userNumber}
+ 		birth = #{birth}, 
+		gender = #{gender}		
+		WHERE user_number = #{userNumber}
+	]]>
 	</update>
 </mapper>
 	

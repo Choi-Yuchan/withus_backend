@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Update;
 
 import withus.ex.vo.UsersVO;
 
@@ -16,8 +17,9 @@ public interface UserMapper {
     
    public UsersVO getUser(String userId);  //권한있는지조회
    
-    UsersVO selectUserInfo(int userNumber); //회원정보조회    
-    void modify(UsersVO user); //회원정보 수정
+    UsersVO selectUserInfo(int userNumber); //회원정보조회  
+    
+    int updateUserInfo(UsersVO modifiedUser); //회원정보 수정
     
     
     

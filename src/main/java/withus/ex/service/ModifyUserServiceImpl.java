@@ -9,18 +9,19 @@ import withus.ex.vo.UsersVO;
 
 @Slf4j
 @Service
-public interface ModifyUserInfoServicelmpl implements ModifyUserInfoService {
+public class ModifyUserServiceImpl implements ModifyUserService {
 	
 	@Autowired // 주입
 	private UserMapper userMapper;
 	
-
-	// 회원정보수정
+//회원정보수정	
 	@Override
-	public void modifyUserInfo(UsersVO user) {
-
-		log.info("modify()..");
-		userMapper.modify(user);
+	public int modifyUser(UsersVO modifiedUser) {
+		return userMapper.updateUserInfo(modifiedUser);
+		
 	}
+
+
+
 	
 }
