@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -29,6 +30,12 @@ public class SecurityAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
+        // GET 요청인 경우 JSON 데이터 파싱을 스킵
+        if (request.getMethod().equals(HttpMethod.GET.name())) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+        
         // Jackson ObjectMapper를 생성합니다.
         ObjectMapper objectMapper = new ObjectMapper();
 

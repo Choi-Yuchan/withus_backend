@@ -53,10 +53,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // 세션 사용 안 함
 		.and()
 		.authorizeRequests()
-			.antMatchers("/**").permitAll()
-			.antMatchers("/user/**").authenticated() // 나머지 API는 인증된 사용자만 접근 가능
-			.antMatchers("/user/**").hasAnyRole("USER") // USER 역할을 가진 사용자만 접근 가능
-			.anyRequest().permitAll() // 나머지 요청은 모든 사용자에게 허용
+		.antMatchers(HttpMethod.POST, "/login","/signUp").permitAll() // POST 요청에 대해서만 허용
+        .antMatchers("/**").permitAll() // 나머지 요청은 인증이 필요
 		.and()
 		.formLogin().disable(); // 폼 로그인 사용 안 함
 
