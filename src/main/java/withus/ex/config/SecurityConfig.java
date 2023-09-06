@@ -47,23 +47,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override // 권한인증 설정해주기
 	protected void configure(HttpSecurity http) throws Exception {
-		http.cors().and() // CorsFilter활성화
-				.csrf().disable() // 보안해제
-				.sessionManagement()
-				// .sessionCreationPolicy(SessionCreationPolicy.STATELESS) //스프링시큐리티에서 세션관리x
-				// 클라이언트에서 요청하는 헤더에 token을 담아보낸다면 서버에서 토큰을 확인하여 인증하는 방식을 사용
-				.and()
+		http
+		.cors().and() // CorsFilter 활성화
+		.csrf().disable() // CSRF 보안 비활성화
+		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // 세션 사용 안 함
+		.and()
+		.authorizeRequests()
+			.antMatchers("/**").permitAll()
+			.antMatchers("/user/**").authenticated() // 나머지 API는 인증된 사용자만 접근 가능
+			.antMatchers("/user/**").hasAnyRole("USER") // USER 역할을 가진 사용자만 접근 가능
+			.anyRequest().permitAll() // 나머지 요청은 모든 사용자에게 허용
+		.and()
+		.formLogin().disable(); // 폼 로그인 사용 안 함
 
-				.authorizeRequests() // 인증절차 설정,특정url
-				// .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-				.antMatchers("/**").permitAll().antMatchers("/user/**").authenticated() // 인증완료되어야
-																						// api사용가능함(#200통과#403에러)
-				// .antMatchers("/user/**").hasAnyRole("ROLE_USER")
-				// .antMatchers("/order/**").hasAnyRole("ROLE_USER")
-
-				.anyRequest().permitAll().and().formLogin().disable();
-
-		http.addFilterBefore(securityAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+	http.addFilterBefore(securityAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
 	}
 
