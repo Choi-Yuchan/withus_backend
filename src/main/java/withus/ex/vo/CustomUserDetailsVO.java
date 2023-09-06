@@ -1,6 +1,5 @@
 package withus.ex.vo;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;

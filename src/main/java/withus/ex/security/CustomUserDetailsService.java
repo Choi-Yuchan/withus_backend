@@ -21,19 +21,21 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 	@Override   //userId로 로그인, 권한조회
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		System.out.println("인증을 받습니다");
-		
-		//로그인 로직 시작
-		 // loginId를 이용하여 DB에서 User 객체를 가져옵니다.
-        		
-		log.warn("Load User by UserVo.number:" + username);
-		
-		//userID를 기반으로 DB에 검색함
-		UsersVO user = userMapper.getUser(username);
-		
-		log.warn("queried by UserVo Maooer:" + user);
-		//null값이 아니면 CusonUserDetailsVO에 그 값을 등록함
-		return user == null ? null : new CustomUserDetailsVO(user);
+        log.info("사용자 인증을 시도합니다");
 
+        // 로그인 로직 시작
+
+        // 사용자 이름을 기반으로 DB에서 사용자 정보를 가져옵니다.
+        UsersVO user = userMapper.getUser(username);
+
+        log.info("사용자 정보 조회 결과: " + user);
+
+        // 사용자 정보가 null인 경우 예외 처리
+        if (user == null) {
+            throw new UsernameNotFoundException("사용자를 찾을 수 없습니다: " + username);
+        }
+
+        // CustomUserDetailsVO에 사용자 정보를 담아서 반환
+        return new CustomUserDetailsVO(user);
 	}
 }
