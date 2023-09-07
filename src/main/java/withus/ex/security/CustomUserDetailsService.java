@@ -20,15 +20,22 @@ public class CustomUserDetailsService implements UserDetailsService {
 	private UserMapper userMapper;
 
 	@Override   //userId로 로그인, 권한조회
-	public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        log.info("사용자 인증을 시도합니다");
 
-		log.warn("Load User by UserVo.number:" + userId);
+        // 로그인 로직 시작
 
-		UsersVO user = userMapper.getUser(userId);
+        // 사용자 이름을 기반으로 DB에서 사용자 정보를 가져옵니다.
+        UsersVO user = userMapper.getUser(username);
 
-		log.warn("queried by UserVo Maooer:" + user);
+        log.info("사용자 정보 조회 결과: " + user);
 
-		return user == null ? null : new CustomUserDetailsVO(user);
+        // 사용자 정보가 null인 경우 예외 처리
+        if (user == null) {
+            throw new UsernameNotFoundException("사용자를 찾을 수 없습니다: " + username);
+        }
 
+        // CustomUserDetailsVO에 사용자 정보를 담아서 반환
+        return new CustomUserDetailsVO(user);
 	}
 }

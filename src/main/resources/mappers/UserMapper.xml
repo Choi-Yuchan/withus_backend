@@ -74,7 +74,7 @@
 	<select id="getUser" resultMap="usersMap">
 		 <![CDATA[
 		select * from withus_users , withus_auth
-		where withus_users.user_id= withus_auth.user_id and withus_users.user_id = #{userId}		
+		where withus_users.user_number = withus_auth.user_number and withus_users.user_id = #{userId}		
 		]]>
 	</select>
 
