@@ -9,21 +9,13 @@ import withus.ex.vo.UsersVO;
 @Mapper
 public interface UserMapper {
     void insert(UsersVO user); //회원가입
+    void insertAuth(UsersVO user); //회원가입시 권한부여
     UsersVO selectUserInfo(int userNumber); //회원정보조회
     
+   public UsersVO getUser(String userId);  //권한있는지조회
     
-    //로그인+권한관련
-    public UsersVO getUser(String userId);   
-    
-//    @Insert("insert into withus_users(userId,password,enabled) values(#{user_id},#{password},#{enabled})")
-//    public int insertUser(UsersVO userVO);
-//
-//    @Insert("insert into withus_auth (userNumber,authority) values(#{user_number},'ROLE_USER')")
-//    public void insertAuthorities(UsersVO UserVO);
 
-
-    
-    
+        
 }
 
 
