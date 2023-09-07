@@ -9,15 +9,15 @@ import withus.ex.vo.ProductVO;
 import withus.ex.vo.UsersVO;
 
 
-public interface ProductService {
+public interface ProductListService {
 
 	// 카테고리별 상품 리스트
 	//public List<ProductVO> list(int cateCode, int level)  throws Exception;
 	public List<ProductVO> getProductlist();
-
+	
 	public List<ProductImgVO> getProductImglist();
 
-	ProductVO getProduct(int productNumber);
+	
 	
 	// 상품조회
 //	public ProductVO goodsView(int gdsNum) throws Exception;
