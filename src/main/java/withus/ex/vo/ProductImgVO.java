@@ -16,11 +16,6 @@ public class ProductImgVO {
 	
 	   private int product_number;
 	   private int product_img_number;
-	   private String product_name;
-	   private String product_img;
-	   private int price;
-	   private int order_quantity;
-	   private String explanation;
 	   private String image_type;
 	   private String file_name;
 	   

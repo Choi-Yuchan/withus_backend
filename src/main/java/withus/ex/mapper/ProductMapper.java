@@ -13,5 +13,5 @@ public interface ProductMapper {
 	List<ProductVO> selectList();
 
 	List<ProductImgVO> selectImgList();
-	ProductVO selectDetail(int productNumber);
+	List<ProductVO> selectDetail(int product_number);
 }

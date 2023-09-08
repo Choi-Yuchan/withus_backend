@@ -101,11 +101,11 @@ public class ProductController {
 //    }
 	//전체 상품 리스트
 	
-	@GetMapping("/productlist/{productNumber}")
+	@GetMapping("/productList/{product_number}")
 	@ResponseBody
-	public ProductVO productDetail(@PathVariable int productNumber) {
+	public List<ProductVO> productDetail(@PathVariable int product_number) {
 		log.info("productDetail()... ");
-	    ProductVO detail = productService.getProduct(productNumber);
+	    List<ProductVO> detail = productService.getProduct(product_number);
 	    return detail;
 	}
 
