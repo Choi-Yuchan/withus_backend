@@ -1,15 +1,14 @@
 package withus.ex.mapper;
 
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
+
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import withus.ex.vo.AuthVO;
+
 import withus.ex.vo.UsersVO;
 
 @SpringBootTest
@@ -22,22 +21,16 @@ public class UserMapperTest {
     void insert() {
         UsersVO user = new UsersVO();
         
-        user.setUserNumber(1);
-        user.setUserName("user1");
-        user.setUserId("user1");
-        user.setPassword(new BCryptPasswordEncoder().encode("user1"));
+        user.setUserNumber(5);
+        user.setUserName("user5");
+        user.setUserId("user5");
+        user.setPassword(new BCryptPasswordEncoder().encode("user5"));
         user.setPhoneNumber("1234567890");
         user.setAddr1("서울시");
         user.setAddr2("강동구");
         user.setAddr3("어딘가");
         user.setBirth(new Date(2000 - 1900, 9, 25)); // Month starts from 0
         user.setGender("M");
-//        List<AuthVO> authList = new ArrayList<>();
-//        AuthVO auth = new AuthVO();
-//        auth.setUserId("user1");
-//        auth.setAuthority("ROLE_USER");
-//        authList.add(auth);
-//        user.setAuthList(authList);
         userMapper.insert(user);
         userMapper.insertAuth(user); 
     }
