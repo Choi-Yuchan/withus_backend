@@ -35,6 +35,11 @@ public class SecurityAuthenticationFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
+        if(request.getRequestURI().equals("/signup")) {
+        	filterChain.doFilter(request, response);
+        	return;
+        }
+        log.info("request: " + request.getRequestURI());
         
         // Jackson ObjectMapper를 생성합니다.
         ObjectMapper objectMapper = new ObjectMapper();
