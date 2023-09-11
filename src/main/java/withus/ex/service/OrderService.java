@@ -7,7 +7,7 @@ import withus.ex.vo.OrderPageItemVO;
 public interface OrderService {
 
 	/* 주문 정보 */
-	public List<OrderPageItemVO> getGoodsInfo(List<OrderPageItemVO> orders);
+	public List<OrderPageItemVO> getGoodsInfo();
 	
 
 }

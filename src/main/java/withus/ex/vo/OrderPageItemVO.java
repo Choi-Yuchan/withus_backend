@@ -14,18 +14,18 @@ import lombok.ToString;
 public class OrderPageItemVO {
 	
 	/* 뷰로부터 전달받을 값 */
-	private int productNumber;
-	private int quantity;
+	private int product_number;
+	private int order_quantity;
 	
 	/* DB로부터 꺼내올 값 */
-	private String productName;
+	private String product_name;
 	private int price;
 	
 	/* 만들어 낼 값 */
-	private int totalPrice;
+	private int total_price;
 	
 	public void initSaleTotal() {
-		this.totalPrice = this.price*this.quantity;
+		this.total_price = this.price*this.order_quantity;
 	}
 }
 

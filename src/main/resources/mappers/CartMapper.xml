@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="withus.ex.mapper.CartMapper">
+
+	<select id="listCart" resultMap="cartListMap">
+    <![CDATA[
+      select c.cnumber as cnumber, 
+      		 c.wid as wid, 
+      	 	 c.user_number as user_number, 
+      	   	 l.wname as wname, 
+      	 	 l.wprice as wprice, 
+      		 c.wcount as wcount, 
+      		 l.wprice*c.wcount as total_price
+		from withus_cart c, withus_letter l 
+		where c.wid = l.wid
+   ]]>
+	</select>
+	
+	<resultMap id="cartListMap" type="withus.ex.vo.CartVO">
+      <result property="cnumber" column="cnumber" /> 
+      <result property="userNumber" column="user_number" />
+      <result property="wid" column="wid" />
+      <result property="wcount" column="wcount" />
+      <result property="wname" column="wname" />
+      <result property="wprice" column="wprice" />
+      <result property="total_price" column="total_price" />
+   </resultMap>
+   
+   <delete id="deleteCart">
+    <![CDATA[
+      delete from withus_cart where wid =#{wid}
+   ]]>
+	</delete>
+
+</mapper>
