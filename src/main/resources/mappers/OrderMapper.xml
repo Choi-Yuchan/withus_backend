@@ -5,20 +5,13 @@
 
 <mapper namespace="withus.ex.mapper.OrderMapper">
 
-	<select id="getGoodsInfo" resultMap="orderMap">
+	<select id="getGoodsInfo" resultType="withus.ex.vo.OrderPageItemVO">
     <![CDATA[
-      select product_number, product_name, price
-      from withus_product where product_number = #{product_number}
+      
    ]]>
 	</select>
-	
-	<resultMap id="orderMap" type="withus.ex.vo.OrderPageItemVO">
-      <id property="productNumber" column="product_number" />
-      <result property="quantity" column="quantity" />
-      <result property="productName" column="product_name" />
-      <result property="price" column="price" />
-      <result property="totalPrice" column="total_price" />
-   </resultMap>
+
+
 	
 
 	

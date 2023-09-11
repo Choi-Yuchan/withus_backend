@@ -1,5 +1,8 @@
 package withus.ex.vo;
 
+
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,14 +14,11 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-
-public class ProductImgVO {
+public class LetterVO {
 	
-	   private int product_number;
-	   private int product_img_number;
-	   private String image_type;
-	   private String file_name;
-	   
-
-	   
+	private int wid;
+	private String wname;
+	private int wprice;
+	private String wdetailed;
+	private List<LetterImgVO> imgList;
 }

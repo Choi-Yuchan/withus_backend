@@ -14,13 +14,13 @@ class OrderPageItemVOTest {
 		
 		assertNotNull(ord);
 		
-		ord.setProductNumber(1);
+		ord.setProduct_number(1);
 		ord.setPrice(1000);
 		
-		assertEquals(1, ord.getProductNumber());
+		assertEquals(1, ord.getProduct_number());
 		assertEquals(1000, ord.getPrice());
 		
-		System.out.println(ord.getProductNumber());
+		System.out.println(ord.getProduct_number());
 		System.out.println(ord);
 	}
 

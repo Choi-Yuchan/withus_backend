@@ -31,8 +31,8 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
-	public ProductVO getProduct(int productNumber) {
-		return productMapper.selectDetail(productNumber);
+	public List<ProductVO> getProduct(int product_number) {
+		return productMapper.selectDetail(product_number);
 	}
 
 	

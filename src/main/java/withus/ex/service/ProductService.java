@@ -17,7 +17,7 @@ public interface ProductService {
 
 	public List<ProductImgVO> getProductImglist();
 
-	ProductVO getProduct(int productNumber);
+	public List<ProductVO> getProduct(int product_number);
 	
 	// 상품조회
 //	public ProductVO goodsView(int gdsNum) throws Exception;
