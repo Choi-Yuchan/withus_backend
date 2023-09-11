@@ -1,10 +1,6 @@
 package withus.ex.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +22,7 @@ public class SignUpServiceImpl implements SignUpService {
     // 회원가입
     @Override
     public void signup(UsersVO user) {
-        log.info("signup()..");
+        log.info("signup service().." + user);
         // 비밀번호를 암호화하여 저장
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
