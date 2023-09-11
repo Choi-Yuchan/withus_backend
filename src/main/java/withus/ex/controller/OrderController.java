@@ -33,14 +33,9 @@ public class OrderController{
 	private GetUserInfoService getUserInfoService;
 	
 	@GetMapping("/order/{userNumber}")
-	public List<Object> orderPageGET(@PathVariable("userNumber") int userNumber) {
-		List<Object> combinedList = new ArrayList<>();
+	public List<OrderPageItemVO> orderPageGET(@PathVariable("userNumber") int userNumber) {
 		List<OrderPageItemVO> orderpage = orderService.getGoodsInfo();
-		UsersVO users = getUserInfoService.getUserInfoList(userNumber);
 		
-		combinedList.addAll(orderpage);
-		combinedList.add(users);
-		
-		return combinedList;//
+		return orderpage;//
 	}
 }

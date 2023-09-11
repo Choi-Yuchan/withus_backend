@@ -7,25 +7,11 @@
 
 	<select id="getGoodsInfo" resultType="withus.ex.vo.OrderPageItemVO">
     <![CDATA[
-      select cart_number, product_number, price, order_quantity, total price 
-      from withus_cart where product_number = #{product_number}
+      
    ]]>
 	</select>
 
-<!-- 	<select id="getGoodsInfo" resultMap="orderMap">
-    <![CDATA[
-      select product_number, product_name, price
-      from withus_product where product_number = #{product_number}
-   ]]>
-	</select> -->
-	
-	<resultMap id="orderMap" type="withus.ex.vo.OrderPageItemVO">
-      <id property="product_number" column="product_number" />
-      <result property="order_quantity" column="quantity" />
-      <result property="product_name" column="product_name" />
-      <result property="price" column="price" />
-      <result property="total_price" column="total_price" />
-   </resultMap>
+
 	
 
 	
