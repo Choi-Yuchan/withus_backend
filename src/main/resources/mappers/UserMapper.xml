@@ -20,7 +20,7 @@
 	</resultMap>
 
 	<resultMap id="authMap" type="withus.ex.vo.AuthVO">
-		<result property="userNumber" column="user_number" />
+		<result property="userId" column="user_id" />
 		<result property="authority" column="authority" />
 	</resultMap>
 
@@ -34,7 +34,6 @@
 	<insert id="insert" parameterType="withus.ex.vo.UsersVO">
         <![CDATA[
             INSERT INTO withus_users (
-                user_number,
                 user_name,
                 user_id,
                 password,
@@ -48,7 +47,6 @@
                 
             )
             VALUES (
-                #{userNumber},
                 #{userName},
                 #{userId},
                 #{password},
@@ -65,7 +63,7 @@
 
 	<insert id="insertAuth" parameterType="withus.ex.vo.UsersVO">
         <![CDATA[
-      		insert into withus_auth values(#{userNumber}, 'ROLE_USER')
+      		insert into withus_auth(user_number, authority) select user_number, 'ROLE_USER' from withus_users where user_id=#{userId}
         ]]>
 	</insert>
 

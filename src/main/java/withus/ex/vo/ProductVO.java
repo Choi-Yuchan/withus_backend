@@ -18,7 +18,7 @@ public class ProductVO {
 	   private int product_number;
 	   private int product_img_number;
 	   private String product_name;
-	   private String product_img;
+	   private String main_img;
 	   private int price;
 	   private int order_quantity;
 	   private String explanation;

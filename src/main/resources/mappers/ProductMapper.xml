@@ -22,10 +22,19 @@
 	<select id="selectImgList" resultMap="productImgMap">
 	 	select * from withus_product_img
 	</select>
-	<select id="selectDetail" resultMap="productListMap">
+	<select id="selectDetail" resultType="withus.ex.vo.ProductVO">
 	<![CDATA[
-			select * from withus_product p, withus_product_img pi
-			where p.product_number = pi.product_number and p.product_number = #{productNumber}
+			select p.product_number,
+			 pi.product_img_number, 
+			 p.product_name, 
+			 p.main_img, 
+			 p.price, 
+			 p.order_quantity, 
+			 p.explanation, 
+			 pi.image_type, 
+			 pi.file_name 
+			 from withus_product p, withus_product_img pi 
+			 where p.product_number = pi.product_number and p.product_number = #{product_number}
 		]]>
 	</select>
 
@@ -34,7 +43,7 @@
       <result property="product_number" column="product_number" /> <!-- userVO의 속성인 getUsername()하고 DB테이블의 컬럼인 username이 매핑됨 -->
       <result property="product_img_number" column="product_img_number" />
       <result property="product_name" column="product_name" />
-      <result property="product_img" column="product_img" />
+      <result property="main_img" column="product_img" />
       <result property="price" column="price" />
       <result property="order_quantity" column="order_quantity" />
       <result property="explanation" column="explanation" />

@@ -51,6 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override // 권한인증 설정해주기
 	protected void configure(HttpSecurity http) throws Exception {
+<<<<<<< HEAD
 		http
 		.cors().and() // CorsFilter 활성화
 		.csrf().disable() // CSRF 보안 비활성화
@@ -68,6 +69,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	http.oauth2Login() //oauth2로그인도 추가로 진행
     .userInfoEndpoint() //oauth2로그인 성공 후에 사용자 정보를 바로 가져온다.
     .userService(oAuth2DetailsService);
+=======
+		http.cors().and() // CorsFilter 활성화
+				.csrf().disable() // CSRF 보안 비활성화
+				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // 세션 사용 안 함
+				.and().authorizeRequests().antMatchers(HttpMethod.POST, "/login", "/signUp").permitAll() // POST 요청에
+																											// 대해서만 허용
+				.antMatchers("/**").permitAll() // 나머지 요청은 인증이 필요
+				.and().formLogin().disable(); // 폼 로그인 사용 안 함
+
+		http.addFilterBefore(securityAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+>>>>>>> 0526bd33dfa8f3b7370f0cf58432e4efccf3e404
 
 	}
 
