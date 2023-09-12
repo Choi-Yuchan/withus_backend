@@ -19,7 +19,6 @@ import withus.ex.service.GetUserInfoService;
 import withus.ex.service.OrderService;
 import withus.ex.vo.CartVO;
 import withus.ex.vo.OrderPageItemVO;
-import withus.ex.vo.OrderPageVO;
 import withus.ex.vo.UsersVO;
 
 @CrossOrigin("http://localhost:3000")
