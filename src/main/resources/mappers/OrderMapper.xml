@@ -5,12 +5,19 @@
 
 <mapper namespace="withus.ex.mapper.OrderMapper">
 
+	<!-- 주문 상품 정보 -->
 	<select id="getGoodsInfo" resultType="withus.ex.vo.OrderPageItemVO">
-    <![CDATA[
-      
-   ]]>
-	</select>
-
+        <![CDATA[
+        select p.order_itemnumber, 
+        p.wid, 
+        l.wname, 
+        l.wprice, 
+        p.wcount, 
+        l.wprice*p.wcount as total_price   
+		from withus_orderitem p, withus_letter l 
+		where p.wid = l.wid
+        ]]>
+	</select>	
 
 	
 
