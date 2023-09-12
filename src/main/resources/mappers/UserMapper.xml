@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="withus.ex.mapper.UserMapper">
+
+	<resultMap id="usersMap" type="withus.ex.vo.UsersVO">
+		<id property="userNumber" column="user_number" />
+		<result property="userName" column="user_name" />
+		<result property="userId" column="user_id" />
+		<result property="password" column="password" />
+		<result property="phoneNumber" column="phone_number" />
+		<result property="addr1" column="user_addr1" />
+		<result property="addr2" column="user_addr2" />
+		<result property="addr3" column="user_addr3" />
+		<result property="birth" column="birth" />
+		<result property="gender" column="gender" />
+		<collection property="authList" resultMap="authMap"></collection>
+	</resultMap>
+
+	<resultMap id="authMap" type="withus.ex.vo.AuthVO">
+		<result property="userId" column="user_id" />
+		<result property="authority" column="authority" />
+	</resultMap>
+
+	<!-- 회원 정보 조회 -->
+	<select id="selectUserInfo" resultMap="usersMap">
+        <![CDATA[
+        SELECT * FROM withus_users WHERE USER_NUMBER = #{userNumber}
+        ]]>
+	</select>
+	
+	<insert id="insert" parameterType="withus.ex.vo.UsersVO">
+        <![CDATA[
+            INSERT INTO withus_users (
+                user_name,
+                user_id,
+                password,
+                phone_number,
+                user_addr1,
+                user_addr2,
+                user_addr3,
+                birth,
+                gender,
+                authority
+                
+            )
+            VALUES (
+                #{userName},
+                #{userId},
+                #{password},
+                #{phoneNumber},
+                #{addr1},
+                #{addr2},
+                #{addr3},
+                #{birth},
+                #{gender},
+                'ROLE_USER'
+            )
+        ]]>
+	</insert>
+
+	<insert id="insertAuth" parameterType="withus.ex.vo.UsersVO">
+        <![CDATA[
+      		insert into withus_auth(user_number, authority) select user_number, 'ROLE_USER' from withus_users where user_id=#{userId}
+        ]]>
+	</insert>
+
+
+	<!-- 로그인 권한조회 -->
+	<select id="getUser" resultMap="usersMap">
+		 <![CDATA[
+		select * from withus_users , withus_auth
+		where withus_users.user_number = withus_auth.user_number and withus_users.user_id = #{userId}		
+		]]>
+	</select>
+
+
+	<!-- 회원 정보 수정 -->
+	<update id="updateUserInfo" >
+	<![CDATA[
+		update withus_users SET	user_name = #{userName},
+		user_id = #{userId},
+		password = #{password},
+		phone_number = #{phoneNumber},
+		user_addr1 = #{addr1},
+		user_addr2 = #{addr2},
+		user_addr3 = #{addr3},
+ 		birth = #{birth}, 
+		gender = #{gender}		
+		WHERE user_number = #{userNumber}
+	]]>
+	</update>
+</mapper>
+	

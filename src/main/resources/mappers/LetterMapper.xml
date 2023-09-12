@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="withus.ex.mapper.LetterMapper">
+	<!-- 상품 메인 -->
+	<select id="selectLeList" resultType="withus.ex.vo.LetterVO">
+	<![CDATA[
+		select * from withus_letter
+	]]>
+	</select>
+
+	<!-- 상품 상세 페이지 -->
+	<select id="selectLeInfo" resultType="withus.ex.vo.LetterVO">
+        <![CDATA[
+        SELECT * FROM withus_letter WHERE wid = #{wid}
+        ]]>
+	</select>
+	
+	<!-- 페이징 -->
+	<select id="getTotalCount" resultType="int">
+      <![CDATA[
+          select count(*) from withus_letter
+      ]]>
+	</select>
+	
+	<select id="getListLePaging" resultType="withus.ex.vo.LetterVO">
+      <![CDATA[
+        SELECT * FROM (
+              SELECT ROWNUM AS RNUM, A.* FROM (
+                       SELECT
+                             *
+                         FROM
+                             withus_letter
+             ) A WHERE ROWNUM <= #{pageNum} * #{amount}
+         ) WHERE RNUM > (#{pageNum}-1) * #{amount}
+      ]]>
+	</select>
+
+</mapper>
