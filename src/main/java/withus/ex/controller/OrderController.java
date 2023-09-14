@@ -14,10 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
+import withus.ex.service.CartService;
 import withus.ex.service.GetUserInfoService;
 import withus.ex.service.OrderService;
+import withus.ex.vo.CartVO;
 import withus.ex.vo.OrderPageItemVO;
-import withus.ex.vo.OrderPageVO;
 import withus.ex.vo.UsersVO;
 
 @CrossOrigin("http://localhost:3000")
@@ -32,10 +33,39 @@ public class OrderController{
 	@Autowired
 	private GetUserInfoService getUserInfoService;
 	
+	@Autowired
+	private CartService cartService;
+	
+	//장바구니 -> 주문
 	@GetMapping("/order/{userNumber}")
-	public List<OrderPageItemVO> orderPageGET(@PathVariable("userNumber") int userNumber) {
-		List<OrderPageItemVO> orderpage = orderService.getGoodsInfo();
+	public List<Object> orderPageCart(@PathVariable int userNumber){
+		List<Object> combined = new ArrayList<>();
+		List<CartVO> ordercart = cartService.getCartList();
+		UsersVO user = getUserInfoService.getUserInfoList(userNumber);
 		
-		return orderpage;//
+		combined.addAll(ordercart);
+		combined.add(user);
+		
+		return combined;
 	}
+	
+	//주문정보
+	@GetMapping("/orderList/{userNumber}")
+	public List<Object> orderPageGetList(@PathVariable int userNumber){
+		List<Object> combinedList = new ArrayList<>();
+		List<OrderPageItemVO> orderList = orderService.getOrderInfo();
+		UsersVO users = getUserInfoService.getUserInfoList(userNumber);
+		
+		combinedList.addAll(orderList);
+		combinedList.add(users);
+		
+		return combinedList;
+	}
+	
+		
+
+	
+
+	
+	
 }
