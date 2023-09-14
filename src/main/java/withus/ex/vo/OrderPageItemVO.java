@@ -13,16 +13,13 @@ import lombok.ToString;
 @ToString
 public class OrderPageItemVO {
 	
-	/* 뷰로부터 전달받을 값 */
+	private int order_itemnumber;
 	private int wid;
-	private int wcount;
-	
-	/* DB로부터 꺼내올 값 */
 	private String wname;
 	private int wprice;
-	
-	/* 만들어 낼 값 */
+	private int wcount;
 	private int total_price;
+	
 	
 }
 
