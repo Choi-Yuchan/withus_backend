@@ -6,9 +6,10 @@
 
 <mapper namespace="withus.ex.mapper.LetterMapper">
 	<!-- 상품 메인 -->
-	<select id="selectLeList" resultType="withus.ex.vo.LetterVO">
+	<select id="selectLeList" resultMap="selectLeList">
 	<![CDATA[
-		select * from withus_letter
+		select * from withus_letter l, withus_image i
+		where l.wid = i.wid
 	]]>
 	</select>
 
@@ -38,5 +39,20 @@
          ) WHERE RNUM > (#{pageNum}-1) * #{amount}
       ]]>
 	</select>
+	
+	<resultMap id="imgMap" type="withus.ex.vo.LetterImgVO">
+		<result property="uuid" column="uuid" />
+		<result property="wid" column="wid" />
+		<result property="filename" column="filename" />
+		<result property="uploadpath" column="uploadpath" />
+	</resultMap>
+	
+	<resultMap id="selectLeList" type="withus.ex.vo.LetterVO">
+		<id property="wid" column="wid" />
+		<result property="wname" column="wname" />
+		<result property="wprice" column="wprice" />
+		<result property="wdetailed" column="wdetailed" />
+		<collection property="imgList" resultMap="imgMap"></collection>
+	</resultMap>
 
 </mapper>

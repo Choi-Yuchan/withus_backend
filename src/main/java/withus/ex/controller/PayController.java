@@ -8,10 +8,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.siot.IamportRestClient.IamportClient;
 import com.siot.IamportRestClient.exception.IamportResponseException;
@@ -21,8 +23,9 @@ import com.siot.IamportRestClient.response.Payment;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
+@CrossOrigin("http://localhost:3000")
 @Slf4j
-@Controller
+@RestController
 @RequestMapping("/pay")
 public class PayController{
 	
@@ -32,7 +35,6 @@ public class PayController{
 		this.api = new IamportClient("8562275647273481", "7IAbU8WzBqR7lJQszQHqjSwIjZ34DaM2i5Z9AARpQgChlPwNjaigvcqBM8BrseLLNllq1jFK3Tx0mIgd");
 	} //constructor
 	
-	@ResponseBody
     @RequestMapping(value="/verifyIamport/{imp_uid}")
     public IamportResponse<Payment> paymentByImpUid(
             Model model

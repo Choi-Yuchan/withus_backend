@@ -83,7 +83,7 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-<<<<<<< HEAD
+
 		
 		
 		<!-- 결제 API -->
@@ -93,7 +93,7 @@
 	    <version>0.2.23</version>
 		</dependency>
 		
-=======
+
 
 		<!-- Jackson library -->
 		<dependency>
@@ -122,7 +122,7 @@
 			<scope>runtime</scope>
 		</dependency>
 
->>>>>>> dda2d5fbeedaedb387ddfe94062210b695ff13e7
+
 	</dependencies>
 
 	<build>
