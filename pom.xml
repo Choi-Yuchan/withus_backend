@@ -84,6 +84,17 @@
 			<scope>test</scope>
 		</dependency>
 
+		
+		
+		<!-- 결제 API -->
+		<dependency>
+	    <groupId>com.github.iamport</groupId>
+	    <artifactId>iamport-rest-client-java</artifactId>
+	    <version>0.2.23</version>
+		</dependency>
+		
+
+
 		<!-- Jackson library -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -115,6 +126,7 @@
    		<groupId>org.springframework.boot</groupId>
    		<artifactId>spring-boot-starter-oauth2-client</artifactId>
 		</dependency>
+
 
 	</dependencies>
 
@@ -155,6 +167,14 @@
 				<enabled>false</enabled>
 			</releases>
 		</repository>
+		
+		
+		<!-- 결제 API -->
+	<repository>
+	    <id>jitpack.io</id>
+	    <url>https://jitpack.io</url>
+	</repository>
+		
 	</repositories>
 	<pluginRepositories>
 		<pluginRepository>
@@ -174,5 +194,6 @@
 			</releases>
 		</pluginRepository>
 	</pluginRepositories>
+	
 
 </project>

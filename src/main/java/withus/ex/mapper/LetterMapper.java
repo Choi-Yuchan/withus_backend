@@ -20,5 +20,6 @@ public interface LetterMapper {
 	int getTotalCount();
 	public List<LetterVO> getListLePaging(Criteria cri);
 	
+	
 
 }

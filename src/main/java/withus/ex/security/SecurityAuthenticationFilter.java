@@ -13,6 +13,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -25,6 +26,9 @@ public class SecurityAuthenticationFilter extends OncePerRequestFilter {
 
     @Autowired
     private CustomUserDetailsService customUserDetailsService;
+    
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -52,7 +56,6 @@ public class SecurityAuthenticationFilter extends OncePerRequestFilter {
             String username = jsonNode.get("username").asText();
             String password = jsonNode.get("password").asText();
 
-            log.info("SecurityAuthenticationFilter - username: " + username);
 
             if (username != null && !username.isEmpty()) {
                 UserDetails authentication = customUserDetailsService.loadUserByUsername(username);
@@ -60,7 +63,7 @@ public class SecurityAuthenticationFilter extends OncePerRequestFilter {
                 // 비밀번호를 DB에서 가져와서 사용자 입력 비밀번호와 비교합니다.
                 String userPassword = authentication.getPassword();
 
-                if (password != null && password.equals(userPassword)) {
+                if (password != null && passwordEncoder.matches(password, userPassword)) {
                     UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
                             authentication.getUsername(), authentication.getPassword(), authentication.getAuthorities());
                     SecurityContextHolder.getContext().setAuthentication(auth);

@@ -17,30 +17,16 @@ public class OrderServicelmpl implements OrderService{
 	@Autowired
 	private OrderMapper orderMapper;
 
-//	@Override
-//	public List<OrderPageItemVO> getGoodsInfo() {
-//
-//		List<OrderPageItemVO> result = new ArrayList<OrderPageItemVO>();		
-//		
-//		for(OrderPageItemVO ord : orders) {
-//			
-//			OrderPageItemVO goodsInfo = orderMapper.getGoodsInfo(ord.getProduct_number());			
-//
-//			goodsInfo.setOrder_quantity(ord.getOrder_quantity());	
-//			
-//			goodsInfo.initSaleTotal();		
-//			
-//			result.add(goodsInfo);			
-//		}		
-//		
-//		return result;
-//		
-//	}
-	
 	@Override
-	public List<OrderPageItemVO> getGoodsInfo() {
+	public List<OrderPageItemVO> getOrderInfo() {
 		return orderMapper.getGoodsInfo();
 	}
+
+	
+
+
+	
+
 
 	
 

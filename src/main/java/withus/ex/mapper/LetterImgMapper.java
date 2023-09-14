@@ -12,5 +12,7 @@ public interface LetterImgMapper {
 
 	/* 이미지 데이터 반환 */
 	public List<LetterImgVO> selectImgList(int wid);
+	
+
 
 }
