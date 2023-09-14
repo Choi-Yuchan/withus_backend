@@ -1,35 +1,75 @@
+package withus.ex.vo;
+
+
+
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
+import withus.ex.vo.UsersVO;
+
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Map;
 
-public class PrincipalDetail implements OAuth2User {
+public class PrincipalDetail implements UserDetails, OAuth2User {
 
-    private Map<String, Object> attributes;
+    private UsersVO user;
 
-    public PrincipalDetail(Map<String, Object> attributes) {
-        this.attributes = attributes;
+    public PrincipalDetail(UsersVO user) {
+        this.user = user;
     }
+    
 
     @Override
-    public Map<String, Object> getAttributes() {
-        return attributes;
-    }
+	public Map<String, Object> getAttributes() {
+		return null;
+	}
 
-    @Override
+
+	@Override
+	public String getName() {
+		return null;
+	}
+
+
+	@Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        // OAuth2 기반의 사용자의 권한 정보를 반환
-        // 예를 들어, OAuth2 기반의 권한 정보를 attributes에서 추출하고 SimpleGrantedAuthority로 변환하여 반환
-        // 이 예제에서는 빈 권한 리스트를 반환
-        return Collections.emptyList();
+        return null;
     }
 
     @Override
-    public String getName() {
-        // 사용자의 이름을 반환 (일반적으로 OAuth2 제공업체에서 제공하는 사용자 이름)
-        // 예를 들어, Google 로그인의 경우 "Google 사용자 이름" 반환
-        return (String) attributes.get("name"); // 실제 사용자 이름 필드의 키를 사용해야 합니다.
+    public String getPassword() {
+        // 사용자의 암호를 반환하는 코드를 구현
+        return user.getPassword();
+    }
+
+    @Override
+    public String getUsername() {
+        // 사용자의 식별자를 반환하는 코드를 구현
+        return user.getUserId();
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        // 계정이 만료되었는지 여부를 반환하는 코드를 구현
+        return true; // 만료되지 않음
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        // 계정이 잠겨있는지 여부를 반환하는 코드를 구현
+        return true; // 잠겨있지 않음
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        // 자격 증명(비밀번호 등)이 만료되었는지 여부를 반환하는 코드를 구현
+        return true; // 만료되지 않음
+    }
+
+    @Override
+    public boolean isEnabled() {
+        // 계정이 활성화되었는지 여부를 반환하는 코드를 구현
+        return true; // 활성화됨
     }
 }

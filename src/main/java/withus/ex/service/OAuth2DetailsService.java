@@ -10,6 +10,7 @@ import withus.ex.mapper.UserMapper;
 import withus.ex.vo.AuthVO;
 import withus.ex.vo.CustomUserDetailsVO;
 import withus.ex.vo.GoogleUserInfo;
+import withus.ex.vo.KakaoUserInfo;
 import withus.ex.vo.OAuth2UserInfo;
 import withus.ex.vo.PrincipalDetail;
 import withus.ex.vo.UsersVO;
@@ -17,6 +18,7 @@ import withus.ex.vo.UsersVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.oauth2.client.registration.ClientRegistration;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
@@ -40,45 +42,37 @@ public class OAuth2DetailsService extends DefaultOAuth2UserService{
    
    @Override //사용자 정보 불러오기
    public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
-
+	
+	
       OAuth2User oauth2User = super.loadUser(userRequest);
-
+      
       OAuth2UserInfo oAuth2UserInfo = null;
+
+
       
       if(userRequest.getClientRegistration().getRegistrationId().equals("google")){
-         log.info("구글 로그인 요청");
-         oAuth2UserInfo = new GoogleUserInfo(oauth2User.getAttributes());
-
-//      }else if(userRequest.getClientRegistration().getRegistrationId().equals("facebook")){
-//         log.info("페이스북 로그인 요청");
-//         oAuth2UserInfo = new FacebookUserInfo(oauth2User.getAttributes());
-//      }else if(userRequest.getClientRegistration().getRegistrationId().equals("naver")){
-//         log.info("네이버 로그인 요청");
-//         oAuth2UserInfo = new NaverUserInfo((Map)oauth2User.getAttributes().get("response"));
-//      }else if(userRequest.getClientRegistration().getRegistrationId().equals("kakao")){
-//         log.info("카카오 로그인 요청");
-//         oAuth2UserInfo = new KakaoUserInfo(oauth2User.getAttributes());
-     }
-
-      String username = oAuth2UserInfo.getProvider() + oAuth2UserInfo.getUsername();
-      String password = bCryptPasswordEncoder.encode("user"); 
-      String email = oAuth2UserInfo.getEmail();
-      String name = oAuth2UserInfo.getName();
-
-
-      UsersVO userVO = userMapper.getUser(userId);
-
-
-      if(userVO==null) { //최초 로그인 시
-         User user = User.builder() //사용자 정보를 나타내는 클래스
-               .userId(userId)
-               .password(password)
-               .authority("ROLE_USER")
-               .build();
+          log.info("구글 로그인 요청");
+          oAuth2UserInfo = new GoogleUserInfo(oauth2User.getAttributes());
+       }else if(userRequest.getClientRegistration().getRegistrationId().equals("kakao")){
+          log.info("카카오 로그인 요청");
+          oAuth2UserInfo = new KakaoUserInfo(oauth2User.getAttributes());
+       }
          
-         List<AuthVO> authList = new ArrayList<>();
       
-         authList.add(authVO);
-      }
+      String UserId = oAuth2UserInfo.getUsername(); // ID로 사용자 식별
+
+      // 사용자 정보를 DB에서 찾거나 생성
+      UsersVO user = userMapper.getUser(UserId);
+
+
+      if (user == null) { // 최초 로그인 시
+          user = new UsersVO();
+          user.setUserId(UserId);
+          user.setPassword(bCryptPasswordEncoder.encode(UUID.randomUUID().toString())); // 랜덤 비밀번호 설정
+          userMapper.insert(user);
+       }
+
+      // 사용자 정보를 반환
+      return new PrincipalDetail(user);
    }
 }
