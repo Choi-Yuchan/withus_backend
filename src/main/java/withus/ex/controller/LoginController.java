@@ -24,7 +24,7 @@ import withus.ex.config.StatusEnum;
 import withus.ex.service.SignUpService;
 import withus.ex.vo.UsersVO;
 
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin(origins = "*")
 @Slf4j
 @RestController
 public class LoginController {

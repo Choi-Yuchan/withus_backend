@@ -32,6 +32,7 @@ import withus.ex.vo.KakaoApproveResponse;
 import withus.ex.vo.KakaoCancelResponse;
 import withus.ex.vo.KakaoReadyResponse;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/payment")
 @RequiredArgsConstructor

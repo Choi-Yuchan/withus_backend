@@ -11,6 +11,7 @@ import withus.ex.service.OAuth2DetailsService;
 
 
 @Slf4j
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(value = "/login/oauth2", produces = "application/json")
 public class SocialLoginController {
