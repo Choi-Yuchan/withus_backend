@@ -21,7 +21,7 @@ import withus.ex.service.GetUserInfoService;
 import withus.ex.service.ModifyUserService;
 import withus.ex.vo.UsersVO;
 
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin(origins = "*")
 @Slf4j
 @RestController
 @RequestMapping("/user/*")
