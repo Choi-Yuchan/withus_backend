@@ -21,7 +21,7 @@ import withus.ex.vo.CartVO;
 import withus.ex.vo.OrderPageItemVO;
 import withus.ex.vo.UsersVO;
 
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin(origins="*")
 @Slf4j
 @RestController
 @RequestMapping("/product/*")

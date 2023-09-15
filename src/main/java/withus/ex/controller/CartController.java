@@ -14,7 +14,7 @@ import withus.ex.service.GetUserInfoService;
 import withus.ex.vo.CartVO;
 import withus.ex.vo.UsersVO;
 
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin(origins="*")
 @RestController
 @RequestMapping("/cart/*")
 public class CartController {

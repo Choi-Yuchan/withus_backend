@@ -58,6 +58,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.addFilterBefore(securityAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
 	}
+	
+	
 
 	
 
