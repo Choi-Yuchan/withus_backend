@@ -70,6 +70,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     .userService(oAuth2DetailsService);
 
 	}
+	
+	
 
 	
 
