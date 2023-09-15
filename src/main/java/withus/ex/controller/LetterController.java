@@ -27,7 +27,7 @@ import withus.ex.service.LetterService;
 import withus.ex.vo.LetterImgVO;
 import withus.ex.vo.LetterVO;
 
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/letter/*")
 public class LetterController {

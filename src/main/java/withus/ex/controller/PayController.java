@@ -23,7 +23,7 @@ import com.siot.IamportRestClient.response.Payment;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin(origins = "*")
 @Slf4j
 @RestController
 @RequestMapping("/pay")
