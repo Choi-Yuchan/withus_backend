@@ -1,5 +1,6 @@
 package withus.ex.service;
 
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -11,25 +12,53 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import lombok.RequiredArgsConstructor;
+<<<<<<< HEAD
 import withus.ex.mapper.UserMapper;
+=======
+import lombok.extern.slf4j.Slf4j;
+import withus.ex.mapper.CartMapper;
+import withus.ex.mapper.OrderMapper;
+>>>>>>> parent of 5017201 (no message)
 import withus.ex.vo.KakaoApproveResponse;
 import withus.ex.vo.KakaoCancelResponse;
 import withus.ex.vo.KakaoReadyResponse;
+import withus.ex.vo.OrderPageItemVO;
 
-
-
+@Slf4j
 @Service
+@RequiredArgsConstructor
 @Transactional
-public class KakaoPayService {
+public class KakaoPayService{
 	
 	@Autowired
+<<<<<<< HEAD
 	private UserMapper userMapper;
 	
 	static final String cid = "TC0ONETIME"; // 가맹점 테스트 코드
+=======
+	public OrderMapper orderMapper;
+	
+	@Autowired
+	public CartMapper cartMapper;
+	
+    static final String cid = "TC0ONETIME"; // 가맹점 테스트 코드
+>>>>>>> parent of 5017201 (no message)
     static final String admin_Key = "dc4cc79c267d4d604d38862f7c9d8bc6"; // 공개 조심! 본인 애플리케이션의 어드민 키를 넣어주세요
     private KakaoReadyResponse kakaoReady;
     
     public KakaoReadyResponse kakaoPayReady() {
+    	
+		List<OrderPageItemVO> orders = orderMapper.getGoodsInfo();
+		
+		String[] orderNames = new String[orders.size()];
+		for(OrderPageItemVO ord: orders) {
+			for(int i=0; i< orders.size(); i++) {
+				orderNames[i] = ord.getWname();
+			}
+		}	
+		String itemName = orderNames[0] + " 그외" + (orders.size()-1);
+		log.info("상품이름:"+itemName);
+		String onumber = itemName;
 
          // 카카오페이 요청 양식
         MultiValueMap<String, String> parameters = new LinkedMultiValueMap<>();
@@ -37,13 +66,13 @@ public class KakaoPayService {
         parameters.add("partner_order_id", "가맹점 주문 번호");
         parameters.add("partner_user_id", "가맹점 회원 ID");
         parameters.add("item_name", "상품명");
-        parameters.add("quantity", "1");
-        parameters.add("total_amount", "10000");
-        parameters.add("vat_amount", "0");
-        parameters.add("tax_free_amount", "0");
-        parameters.add("approval_url", "http://localhost:8080/payment/success"); // 성공 시 redirect url
-        parameters.add("cancel_url", "http://localhost:8080/payment/cancel"); // 취소 시 redirect url
-        parameters.add("fail_url", "http://localhost:8080/payment/fail"); // 실패 시 redirect url
+        parameters.add("quantity", "1"); //주문 수량
+        parameters.add("total_amount", "10000");//총 금액
+        parameters.add("vat_amount", "1000");//부가세
+        parameters.add("tax_free_amount", "0");//상품 비과세 금액
+        parameters.add("approval_url", "http://localhost:8181/payment/success"); // 성공 시 redirect url
+        parameters.add("cancel_url", "http://localhost:8181/payment/cancel"); // 취소 시 redirect url
+        parameters.add("fail_url", "http://localhost:8181/payment/fail"); // 실패 시 redirect url
         
         // 파라미터, 헤더
         HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(parameters, this.getHeaders());
@@ -87,31 +116,31 @@ public class KakaoPayService {
     }
     
     /**
-     * 결제 환불
-     */
-     public KakaoCancelResponse kakaoCancel() {
+    * 결제 환불
+    */
+    public KakaoCancelResponse kakaoCancel() {
 
-         // 카카오페이 요청
-         MultiValueMap<String, String> parameters = new LinkedMultiValueMap<>();
-         parameters.add("cid", cid);
-         parameters.add("tid", "환불할 결제 고유 번호");
-         parameters.add("cancel_amount", "환불 금액");
-         parameters.add("cancel_tax_free_amount", "환불 비과세 금액");
-         parameters.add("cancel_vat_amount", "환불 부가세");
+        // 카카오페이 요청
+        MultiValueMap<String, String> parameters = new LinkedMultiValueMap<>();
+        parameters.add("cid", cid);
+        parameters.add("tid", "환불할 결제 고유 번호");
+        parameters.add("cancel_amount", "환불 금액");
+        parameters.add("cancel_tax_free_amount", "환불 비과세 금액");
+        parameters.add("cancel_vat_amount", "환불 부가세");
 
-         // 파라미터, 헤더
-         HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(parameters, this.getHeaders());
-     
-         // 외부에 보낼 url
-         RestTemplate restTemplate = new RestTemplate();
-     
-         KakaoCancelResponse cancelResponse = restTemplate.postForObject(
-                 "https://kapi.kakao.com/v1/payment/cancel",
-                 requestEntity,
-                 KakaoCancelResponse.class);
-                 
-         return cancelResponse;
-     }
+        // 파라미터, 헤더
+        HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(parameters, this.getHeaders());
+    
+        // 외부에 보낼 url
+        RestTemplate restTemplate = new RestTemplate();
+    
+        KakaoCancelResponse cancelResponse = restTemplate.postForObject(
+                "https://kapi.kakao.com/v1/payment/cancel",
+                requestEntity,
+                KakaoCancelResponse.class);
+                
+        return cancelResponse;
+    }
     
     /**
      * 카카오 요구 헤더값
@@ -126,8 +155,5 @@ public class KakaoPayService {
 
         return httpHeaders;
     }
-	
-	
+
 }
-
-
