@@ -1,8 +1,5 @@
 package withus.ex.service;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
@@ -12,21 +9,23 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import lombok.RequiredArgsConstructor;
+<<<<<<< HEAD
 import withus.ex.mapper.UserMapper;
 import lombok.extern.slf4j.Slf4j;
 import withus.ex.mapper.CartMapper;
 import withus.ex.mapper.OrderMapper;
+=======
+>>>>>>> parent of a57dceb (develop 요청파일)
 import withus.ex.vo.KakaoApproveResponse;
 import withus.ex.vo.KakaoCancelResponse;
 import withus.ex.vo.KakaoReadyResponse;
-import withus.ex.vo.OrderPageItemVO;
 
-@Slf4j
 @Service
 @RequiredArgsConstructor
 @Transactional
 public class KakaoPayService{
 	
+<<<<<<< HEAD
 	@Autowired
 	private UserMapper userMapper;
 	
@@ -36,23 +35,13 @@ public class KakaoPayService{
 	@Autowired
 	public CartMapper cartMapper;
 	
+=======
+>>>>>>> parent of a57dceb (develop 요청파일)
     static final String cid = "TC0ONETIME"; // 가맹점 테스트 코드
     static final String admin_Key = "dc4cc79c267d4d604d38862f7c9d8bc6"; // 공개 조심! 본인 애플리케이션의 어드민 키를 넣어주세요
     private KakaoReadyResponse kakaoReady;
     
     public KakaoReadyResponse kakaoPayReady() {
-    	
-		List<OrderPageItemVO> orders = orderMapper.getGoodsInfo();
-		
-		String[] orderNames = new String[orders.size()];
-		for(OrderPageItemVO ord: orders) {
-			for(int i=0; i< orders.size(); i++) {
-				orderNames[i] = ord.getWname();
-			}
-		}	
-		String itemName = orderNames[0] + " 그외" + (orders.size()-1);
-		log.info("상품이름:"+itemName);
-		String onumber = itemName;
 
          // 카카오페이 요청 양식
         MultiValueMap<String, String> parameters = new LinkedMultiValueMap<>();
