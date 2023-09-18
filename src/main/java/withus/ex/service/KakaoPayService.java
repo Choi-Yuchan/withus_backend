@@ -1,7 +1,10 @@
 package withus.ex.service;
 
+<<<<<<< HEAD
 
 import org.springframework.beans.factory.annotation.Autowired;
+=======
+>>>>>>> parent of a57dceb (develop 요청파일)
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
@@ -11,22 +14,32 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import lombok.RequiredArgsConstructor;
+<<<<<<< HEAD
 import withus.ex.mapper.UserMapper;
+=======
+>>>>>>> parent of a57dceb (develop 요청파일)
 import withus.ex.vo.KakaoApproveResponse;
 import withus.ex.vo.KakaoCancelResponse;
 import withus.ex.vo.KakaoReadyResponse;
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> parent of a57dceb (develop 요청파일)
 @Service
 @Transactional
 @RequiredArgsConstructor
 public class KakaoPayService {
 	
+<<<<<<< HEAD
 	@Autowired
 	private UserMapper userMapper;
 	
 	static final String cid = "TC0ONETIME"; // 가맹점 테스트 코드
+=======
+    static final String cid = "TC0ONETIME"; // 가맹점 테스트 코드
+>>>>>>> parent of a57dceb (develop 요청파일)
     static final String admin_Key = "dc4cc79c267d4d604d38862f7c9d8bc6"; // 공개 조심! 본인 애플리케이션의 어드민 키를 넣어주세요
     private KakaoReadyResponse kakaoReady;
     
