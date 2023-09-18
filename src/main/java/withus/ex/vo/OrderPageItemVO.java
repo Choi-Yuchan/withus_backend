@@ -13,7 +13,6 @@ import lombok.ToString;
 @ToString
 public class OrderPageItemVO {
 	
-	private int onumber;
 	private int order_itemnumber;
 	private int wid;
 	private String wname;
