@@ -16,6 +16,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import withus.ex.security.CustomUserDetailsService;
 import withus.ex.security.SecurityAuthenticationFilter;
+import withus.ex.service.OAuth2DetailsService;
 
 @Configuration
 @EnableWebSecurity
@@ -23,15 +24,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private CustomUserDetailsService customUserDetailsService;
-//	
-//	@Autowired
-//	private OAuth2DetailsService oAuth2DetailsService;
+	
+	@Autowired
+	private OAuth2DetailsService oAuth2DetailsService;
 
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
-		   
 
 	@Bean
 	public SecurityAuthenticationFilter securityAuthenticationFilter() {
@@ -65,9 +61,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	http.addFilterBefore(securityAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 	
 	
-//	http.oauth2Login() //oauth2로그인도 추가로 진행
-//    .userInfoEndpoint() //oauth2로그인 성공 후에 사용자 정보를 바로 가져온다.
-//    .userService(oAuth2DetailsService);
+	http.oauth2Login() //oauth2로그인도 추가로 진행
+    .userInfoEndpoint() //oauth2로그인 성공 후에 사용자 정보를 바로 가져온다.
+    .userService(oAuth2DetailsService);
 
 	}
 	

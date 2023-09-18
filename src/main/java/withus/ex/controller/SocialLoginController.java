@@ -27,14 +27,14 @@
 //        return "redirect:/oauth2/authorization/google";
 //    }
 //
-//    @GetMapping("/kakao")
-//    public String kakaoLogin() {
-//        return "redirect:/oauth2/authorization/kakao";
-//    }
-//    
+////    @GetMapping("/kakao")
+////    public String kakaoLogin() {
+////        return "redirect:/oauth2/authorization/kakao";
+////    }
+////    
 //	
 //    @ResponseBody
-//    @GetMapping("/kakao/callback")
+//    @GetMapping("/kakao")
 //    public void kakaoCallback(@RequestParam("code") String code) {
 //        System.out.println("code:" + code);
 //    }
