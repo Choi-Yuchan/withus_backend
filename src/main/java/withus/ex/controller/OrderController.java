@@ -62,17 +62,6 @@ public class OrderController{
 		return combinedList;
 	}
 	
-	//주문 현황
-	@GetMapping("/ordered/{userNumber}")
-	public List<Object> orderedPage(@PathVariable int userNumber){
-		List<Object> combined = new ArrayList<>();
-		List<OrderPageItemVO> ordercart = orderService.getOrderInfo();
-		
-		combined.addAll(ordercart);
-		
-		return combined;
-	}
-	
 		
 
 	
