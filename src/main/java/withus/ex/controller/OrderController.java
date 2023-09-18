@@ -62,6 +62,15 @@ public class OrderController{
 		return combinedList;
 	}
 	
+	
+	//마이페이지 주문조회
+	@GetMapping("/myOrder/{userNumber}")
+	public List<Object> myOrder(@PathVariable int userNumber){
+		List<Object> object = new ArrayList<>();
+		List<OrderPageItemVO> ordered = orderService.getOrderInfo();
+		
+		return object;
+	}
 		
 
 	
