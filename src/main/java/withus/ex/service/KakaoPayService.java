@@ -10,6 +10,8 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+import lombok.RequiredArgsConstructor;
+import withus.ex.mapper.UserMapper;
 import withus.ex.vo.KakaoApproveResponse;
 import withus.ex.vo.KakaoCancelResponse;
 import withus.ex.vo.KakaoReadyResponse;
@@ -18,10 +20,14 @@ import withus.ex.vo.KakaoReadyResponse;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class KakaoPayService {
 	
+	@Autowired
+	private UserMapper userMapper;
+	
 	static final String cid = "TC0ONETIME"; // 가맹점 테스트 코드
-    static final String admin_Key = "${dc4cc79c267d4d604d38862f7c9d8bc6}"; // 공개 조심! 본인 애플리케이션의 어드민 키를 넣어주세요
+    static final String admin_Key = "dc4cc79c267d4d604d38862f7c9d8bc6"; // 공개 조심! 본인 애플리케이션의 어드민 키를 넣어주세요
     private KakaoReadyResponse kakaoReady;
     
     public KakaoReadyResponse kakaoPayReady() {
