@@ -14,9 +14,10 @@
 	</select>
 
 	<!-- 상품 상세 페이지 -->
-	<select id="selectLeInfo" resultType="withus.ex.vo.LetterVO">
+	<select id="selectLeInfo" resultMap="selectLeInfo">
         <![CDATA[
-        SELECT * FROM withus_letter WHERE wid = #{wid}
+        SELECT * FROM withus_letter l, withus_image i 
+        WHERE l.wid = i.wid and l.wid = #{wid}
         ]]>
 	</select>
 	
@@ -54,5 +55,15 @@
 		<result property="wdetailed" column="wdetailed" />
 		<collection property="imgList" resultMap="imgMap"></collection>
 	</resultMap>
+	
+	<resultMap id="selectLeInfo" type="withus.ex.vo.LetterVO">
+		<id property="wid" column="wid" />
+		<result property="wname" column="wname" />
+		<result property="wprice" column="wprice" />
+		<result property="wdetailed" column="wdetailed" />
+		<collection property="imgList" resultMap="imgMap"></collection>
+	</resultMap>
+	
+	
 
 </mapper>

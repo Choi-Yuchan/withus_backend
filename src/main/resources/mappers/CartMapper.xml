@@ -35,5 +35,8 @@
       delete from withus_cart where wid =#{wid}
    ]]>
 	</delete>
+	
+
+	
 
 </mapper>
