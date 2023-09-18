@@ -12,13 +12,10 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import lombok.RequiredArgsConstructor;
-<<<<<<< HEAD
 import withus.ex.mapper.UserMapper;
-=======
 import lombok.extern.slf4j.Slf4j;
 import withus.ex.mapper.CartMapper;
 import withus.ex.mapper.OrderMapper;
->>>>>>> parent of 5017201 (no message)
 import withus.ex.vo.KakaoApproveResponse;
 import withus.ex.vo.KakaoCancelResponse;
 import withus.ex.vo.KakaoReadyResponse;
@@ -26,28 +23,20 @@ import withus.ex.vo.OrderPageItemVO;
 
 @Slf4j
 @Service
-<<<<<<< HEAD
-@Transactional
-public class KakaoPayService {
-=======
 @RequiredArgsConstructor
 @Transactional
 public class KakaoPayService{
->>>>>>> 490fa5aedc4b6ccc15403987312345856800bce2
 	
 	@Autowired
-<<<<<<< HEAD
 	private UserMapper userMapper;
 	
-	static final String cid = "TC0ONETIME"; // 가맹점 테스트 코드
-=======
+	@Autowired
 	public OrderMapper orderMapper;
 	
 	@Autowired
 	public CartMapper cartMapper;
 	
     static final String cid = "TC0ONETIME"; // 가맹점 테스트 코드
->>>>>>> parent of 5017201 (no message)
     static final String admin_Key = "dc4cc79c267d4d604d38862f7c9d8bc6"; // 공개 조심! 본인 애플리케이션의 어드민 키를 넣어주세요
     private KakaoReadyResponse kakaoReady;
     
