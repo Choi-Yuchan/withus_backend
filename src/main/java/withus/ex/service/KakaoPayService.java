@@ -20,7 +20,6 @@ import withus.ex.vo.KakaoReadyResponse;
 
 @Service
 @Transactional
-@RequiredArgsConstructor
 public class KakaoPayService {
 	
 	@Autowired
