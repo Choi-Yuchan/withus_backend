@@ -16,12 +16,10 @@ import lombok.ToString;
 public class OrderVO {
 	
 	/* 주문 번호 */
+	private int order_itemnumber;
+	private int wid;
+	private int wcount;
 	private int onumber;
-	/* 최종 가격 */
-    private int final_price;
-    
-    // 주문페이지
-    private List<OrderPageItemVO> checkOrd;
     
 	
 	

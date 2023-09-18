@@ -19,6 +19,7 @@ public class OrderPageItemVO {
 	private int wprice;
 	private int wcount;
 	private int total_price;
+	private int onumber;
 	
 	
 }
