@@ -1,7 +1,6 @@
 package withus.ex.service;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
@@ -11,7 +10,6 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import lombok.RequiredArgsConstructor;
-import withus.ex.mapper.UserMapper;
 import withus.ex.vo.KakaoApproveResponse;
 import withus.ex.vo.KakaoCancelResponse;
 import withus.ex.vo.KakaoReadyResponse;
@@ -20,10 +18,8 @@ import withus.ex.vo.KakaoReadyResponse;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class KakaoPayService {
-	
-	@Autowired
-	private UserMapper userMapper;
 	
 	static final String cid = "TC0ONETIME"; // 가맹점 테스트 코드
     static final String admin_Key = "dc4cc79c267d4d604d38862f7c9d8bc6"; // 공개 조심! 본인 애플리케이션의 어드민 키를 넣어주세요
@@ -37,13 +33,13 @@ public class KakaoPayService {
         parameters.add("partner_order_id", "가맹점 주문 번호");
         parameters.add("partner_user_id", "가맹점 회원 ID");
         parameters.add("item_name", "상품명");
-        parameters.add("quantity", "1");
+        parameters.add("quantity", "10");
         parameters.add("total_amount", "10000");
-        parameters.add("vat_amount", "0");
+        parameters.add("vat_amount", "100");
         parameters.add("tax_free_amount", "0");
-        parameters.add("approval_url", "http://localhost:8080/payment/success"); // 성공 시 redirect url
-        parameters.add("cancel_url", "http://localhost:8080/payment/cancel"); // 취소 시 redirect url
-        parameters.add("fail_url", "http://localhost:8080/payment/fail"); // 실패 시 redirect url
+        parameters.add("approval_url", "http://localhost:8181/payment/success"); // 성공 시 redirect url
+        parameters.add("cancel_url", "http://localhost:8181/payment/cancel"); // 취소 시 redirect url
+        parameters.add("fail_url", "http://localhost:8181/payment/fail"); // 실패 시 redirect url
         
         // 파라미터, 헤더
         HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(parameters, this.getHeaders());
