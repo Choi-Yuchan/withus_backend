@@ -12,6 +12,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import lombok.RequiredArgsConstructor;
+import withus.ex.mapper.UserMapper;
 import lombok.extern.slf4j.Slf4j;
 import withus.ex.mapper.CartMapper;
 import withus.ex.mapper.OrderMapper;
@@ -25,6 +26,9 @@ import withus.ex.vo.OrderPageItemVO;
 @RequiredArgsConstructor
 @Transactional
 public class KakaoPayService{
+	
+	@Autowired
+	private UserMapper userMapper;
 	
 	@Autowired
 	public OrderMapper orderMapper;

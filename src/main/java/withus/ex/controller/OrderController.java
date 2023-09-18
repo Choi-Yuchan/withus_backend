@@ -21,7 +21,7 @@ import withus.ex.vo.CartVO;
 import withus.ex.vo.OrderPageItemVO;
 import withus.ex.vo.UsersVO;
 
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin(origins = "*")
 @Slf4j
 @RestController
 @RequestMapping("/product/*")
@@ -60,17 +60,6 @@ public class OrderController{
 		combinedList.add(users);
 		
 		return combinedList;
-	}
-	
-	//주문 현황
-	@GetMapping("/ordered/{userNumber}")
-	public List<Object> orderedPage(@PathVariable int userNumber){
-		List<Object> combined = new ArrayList<>();
-		List<OrderPageItemVO> ordercart = orderService.getOrderInfo();
-		
-		combined.addAll(ordercart);
-		
-		return combined;
 	}
 	
 		
