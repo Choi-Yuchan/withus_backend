@@ -30,7 +30,8 @@ public class KakaoUserInfo implements OAuth2UserInfo {
 
 	@Override
 	public String getUsername() {
-		 return String.valueOf(kakaoAccount.get("account_email"));
+		// return String.valueOf(kakaoAccount.get("profile_nickname"));
+		return null;
 	}
 
 	@Override
