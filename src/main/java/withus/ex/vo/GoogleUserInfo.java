@@ -37,6 +37,12 @@ public class GoogleUserInfo implements OAuth2UserInfo {
 			// TODO Auto-generated method stub
 			return null;
 		}
+
+		@Override
+		public String getProviderId() {
+			// TODO Auto-generated method stub
+			return null;
+		}
 	  	  
 
 

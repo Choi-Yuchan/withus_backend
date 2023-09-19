@@ -2,42 +2,46 @@ package withus.ex.vo;
 
 import java.util.Map;
 
-public class KakaoUserInfo implements OAuth2UserInfo{
+public class KakaoUserInfo implements OAuth2UserInfo {
 
-    private Map<String, Object> attributes; // getAttributes
-    private Map<String, Object> attributesProperties; // getAttributes
-    private Map<String, Object> attributesAccount; // getAttributes
-    private Map<String, Object> attributesProfile; // getAttributes
+	private String id;
+	private Map<String, Object> kakaoAccount;
 
-    public KakaoUserInfo(Map<String,Object> attributes){
-        this.attributes = attributes;
-        this.attributesProperties = (Map<String, Object>) attributes.get("properties");
-        this.attributesAccount = (Map<String, Object>) attributes.get("kakao_account");
-        this.attributesProfile = (Map<String, Object>) attributesAccount.get("profile");
-    }
+	public KakaoUserInfo(Map<String, Object> attributes, String id) {
+		this.kakaoAccount = attributes;
+		this.id = id;
+	}
 
-    @Override
-    public String getProvider() {
-        return "kakao_";
-    }
+	@Override
+	public String getProviderId() {
+		return id;
+	}
 
-    @Override
-    public String getUsername() {
-        return attributes.get("id").toString();
-    }
+	@Override
+	public String getProvider() {
+		return "kakao";
+	}
 
-    @Override
-    public String getPassword() {
-        return null;
-    }
 
-    @Override
-    public String getEmail() {
-        return (String) attributesAccount.get("email");
-    }
+	@Override
+	public String getName() {
+	     return null;
+	}
 
-    @Override
-    public String getName() {
-        return (String) attributesProperties.get("nickname");
-    }
+	@Override
+	public String getUsername() {
+		 return String.valueOf(kakaoAccount.get("account_email"));
+	}
+
+	@Override
+	public String getPassword() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getEmail() {
+	     return String.valueOf(kakaoAccount.get("account_email"));
+	}
+
 }
