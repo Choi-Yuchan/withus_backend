@@ -10,15 +10,19 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
+import withus.ex.page.Criteria;
+import withus.ex.page.PageVO;
 import withus.ex.service.CartService;
 import withus.ex.service.GetUserInfoService;
 import withus.ex.service.OrderService;
 import withus.ex.vo.CartVO;
 import withus.ex.vo.OrderPageItemVO;
+import withus.ex.vo.OrderVO;
 import withus.ex.vo.UsersVO;
 
 @CrossOrigin(origins = "*")
@@ -62,21 +66,32 @@ public class OrderController{
 		return combinedList;
 	}
 	
-	//주문 현황
-	@GetMapping("/ordered/{userNumber}")
-	public List<Object> orderedPage(@PathVariable int userNumber){
-		List<Object> combined = new ArrayList<>();
-		List<OrderPageItemVO> ordercart = orderService.getOrderInfo();
+	
+	//마이페이지 주문조회
+	@GetMapping("/myOrder/{userNumber}")
+	public List<OrderPageItemVO> myOrder(@PathVariable int userNumber){
+		List<OrderPageItemVO> ordered = orderService.getOrderInfo();
 		
-		combined.addAll(ordercart);
+		return ordered;
+	}
 		
-		return combined;
+	
+	//주문넣기
+	@GetMapping("/buy")
+	public String buy(OrderVO order) {
+		orderService.enrollItem(order);
+		return "SUCCESS";
 	}
 	
+	//페이징처리
+	@GetMapping("/list")	//get 메소드로 처리하도록
+	public String list(Criteria cri, Model model) {
+		model.addAttribute("OrderList", orderService.getListOrPaging(cri)); //글 10개 가져오는 부분
 		
-
-	
-
+		int total = orderService.getTotal();
+		model.addAttribute("pageMaker", new PageVO(cri, total)); //페이지버튼그리기위한 정보
+		return "SUCCESS";
+	}
 	
 	
 }

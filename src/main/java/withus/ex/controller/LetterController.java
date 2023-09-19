@@ -1,4 +1,4 @@
-package withus.ex.controller;
+	package withus.ex.controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -59,7 +59,7 @@ public class LetterController {
 		
 		int total = letterService.getTotal();
 		model.addAttribute("pageMaker", new PageVO(cri, total)); //페이지버튼그리기위한 정보
-		return "letter/list";
+		return "SUCCESS";
 	}
 	
 	
