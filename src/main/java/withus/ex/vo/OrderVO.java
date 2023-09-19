@@ -15,9 +15,14 @@ import lombok.ToString;
 @ToString
 public class OrderVO {
 	
-    /* 상품 리스트 */
-    private List<OrderPageItemVO> itemList;
-    	
+	/* 주문 번호 */
+	private int order_itemnumber;
+	private int wid;
+	private int wcount;
+	private int onumber;
+    
+	
+	
 }
 
 
