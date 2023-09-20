@@ -40,17 +40,6 @@ public class OAuth2DetailsService extends DefaultOAuth2UserService {
 
 		OAuth2UserInfo oAuth2UserInfo = null;
 
-//      
-//      if(userRequest.getClientRegistration().getRegistrationId().equals("google")){
-//          oAuth2UserInfo = new GoogleUserInfo(oAuth2User.getAttributes());
-//       
-//      }else if(userRequest.getClientRegistration().getRegistrationId().equals("kakao")){
-//          oAuth2UserInfo = new KakaoUserInfo(oAuth2User.getAttributes());
-//       
-//      }else if(userRequest.getClientRegistration().getRegistrationId().equals("naver")){
-//          oAuth2UserInfo = new NaverUserInfo(oAuth2User.getAttributes());
-//      }
-
 		if (userRequest.getClientRegistration().getRegistrationId().equals("google")) {
 			oAuth2UserInfo = new GoogleUserInfo(oAuth2User.getAttributes());
 
@@ -59,9 +48,9 @@ public class OAuth2DetailsService extends DefaultOAuth2UserService {
 			
 		} else if (userRequest.getClientRegistration().getRegistrationId().equals("kakao")) {
 			oAuth2UserInfo = new KakaoUserInfo((Map<String, Object>) oAuth2User.getAttributes().get("kakao_account"),
-				String.valueOf(oAuth2User.getAttributes().get("email")));
+				String.valueOf(oAuth2User.getAttributes().get("account_email")));
 		}
-	
+
 
 		String UserId = oAuth2UserInfo.getUsername(); // ID로 사용자 식별
 
@@ -86,5 +75,6 @@ public class OAuth2DetailsService extends DefaultOAuth2UserService {
 
 		// 사용자 정보를 반환
 		return new PrincipalDetail(user);
-	}
+
+}
 }
