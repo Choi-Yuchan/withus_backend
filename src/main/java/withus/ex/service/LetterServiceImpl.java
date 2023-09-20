@@ -30,7 +30,11 @@ public class LetterServiceImpl implements LetterService {
 	//상품상세페이지
 	@Override
 	public LetterVO getLeInfoList(int wid) {
-		return letterMapper.selectLeInfo(wid);
+		//return letterMapper.selectLeInfo(wid);
+		LetterVO goodsInfo = letterMapper.selectLeInfo(wid);
+		goodsInfo.setImgList(letterImgMapper.selectImgList(wid));
+		
+		return goodsInfo;
 	}
 	
 	//페이징 처리
