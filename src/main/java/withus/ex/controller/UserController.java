@@ -1,7 +1,12 @@
 package withus.ex.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +21,7 @@ import withus.ex.service.GetUserInfoService;
 import withus.ex.service.ModifyUserService;
 import withus.ex.vo.UsersVO;
 
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin(origins = "*")
 @Slf4j
 @RestController
 @RequestMapping("/user/*")
@@ -54,5 +59,18 @@ public class UserController {
 		return "SUCCESS";
 
 	}
+	
+	//로그아웃
+	@GetMapping("/logout")
+    public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
+		log.info("request: " + request);
+        SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
+        logoutHandler.logout(request, response, SecurityContextHolder.getContext().getAuthentication());
+        logoutHandler.isInvalidateHttpSession();
+        
+        return "LogOutSUCCESS";
+    }
+	
+
 
 }
