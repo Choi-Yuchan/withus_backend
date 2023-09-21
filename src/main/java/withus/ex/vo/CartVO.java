@@ -15,6 +15,15 @@ import lombok.ToString;
 public class CartVO {
 	
     private int cnumber;
+    
+    public int getCnumber() {
+        return cnumber;
+    }
+
+    public void setCnumber(int cnumber) {
+        this.cnumber = cnumber;
+    }
+    
     private int userNumber;
     private int wid;
     private int wcount;
