@@ -34,11 +34,12 @@ public class SecurityAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
-        // GET 요청인 경우 JSON 데이터 파싱을 스킵
-        if (request.getMethod().equals(HttpMethod.GET.name())) {
+        // GET,DELETE 요청인 경우 JSON 데이터 파싱을 스킵
+        if (request.getMethod().equals(HttpMethod.GET.name()) || request.getMethod().equals(HttpMethod.DELETE.name())) {
             filterChain.doFilter(request, response);
             return;
         }
+           
         if(request.getRequestURI().equals("/signup")||request.getRequestURI().equals("/cart/add")||request.getRequestURI().startsWith("/cart/delete")) {
         	filterChain.doFilter(request, response);
         	return;

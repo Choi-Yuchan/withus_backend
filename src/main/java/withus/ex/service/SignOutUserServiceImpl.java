@@ -21,12 +21,11 @@ public class SignOutUserServiceImpl implements SignOutService {
 		return userMapper.deleteUser(userNumber);
 
 	}
-
-	@Override
-	public void deleteUser(int userNumber) {
-		// TODO Auto-generated method stub
-		
-	}
-
+//
+//	@Override
+//	public void deleteUser(int userNumber) {
+//		// TODO Auto-generated method stub
+//		
+//	}
 	
 }

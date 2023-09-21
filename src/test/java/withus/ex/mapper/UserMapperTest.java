@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-
+import withus.ex.service.SignOutService;
 import withus.ex.vo.UsersVO;
 
 @SpringBootTest
@@ -16,6 +16,7 @@ public class UserMapperTest {
 
     @Autowired
     private UserMapper userMapper;
+    
 
     @Test
     void insert() {
@@ -43,4 +44,15 @@ public class UserMapperTest {
         UsersVO user = userMapper.selectUserInfo(userNumber);
 
     }
+ // 회원정보 삭제
+    @Autowired 
+    private SignOutService signOutService;
+    
+    @Test
+    void deleteUser() {
+       int userNumber = 3;
+       signOutService.signOutUser(userNumber);
+
+    }
+
 }

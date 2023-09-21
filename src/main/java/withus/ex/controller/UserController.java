@@ -59,7 +59,7 @@ public class UserController {
 	private SignOutService signOutService; // 추가된 부분
 
 	// 회원탈퇴
-	@PostMapping("/{userNumber}/deleteUser")
+	@DeleteMapping("/{userNumber}/deleteUser")
 	public String deleteUser(@PathVariable int userNumber) {
 		log.info("userNumber: " + userNumber);
 		signOutService.signOutUser(userNumber);
