@@ -39,7 +39,7 @@ public class SecurityAuthenticationFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
-        if(request.getRequestURI().equals("/signup")) {
+        if(request.getRequestURI().equals("/signup")||request.getRequestURI().equals("/cart/add")||request.getRequestURI().startsWith("/cart/delete")) {
         	filterChain.doFilter(request, response);
         	return;
         }

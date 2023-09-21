@@ -11,12 +11,10 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import withus.ex.security.CustomUserDetailsService;
 import withus.ex.security.SecurityAuthenticationFilter;
-import withus.ex.service.OAuth2DetailsService;
 
 @Configuration
 @EnableWebSecurity
@@ -25,13 +23,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private CustomUserDetailsService customUserDetailsService;
 	
-	@Autowired
-	private OAuth2DetailsService oAuth2DetailsService;
-
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
 
 	@Bean
 	public SecurityAuthenticationFilter securityAuthenticationFilter() {
@@ -63,11 +54,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.formLogin().disable(); // 폼 로그인 사용 안 함
 	  
 	http.addFilterBefore(securityAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
-	
-	
-	http.oauth2Login() //oauth2로그인도 추가로 진행
-    .userInfoEndpoint() //oauth2로그인 성공 후에 사용자 정보를 바로 가져온다.
-    .userService(oAuth2DetailsService);
 
 	}
 	

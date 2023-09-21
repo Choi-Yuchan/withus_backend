@@ -4,10 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
-<mapper namespace="withus.ex.mapper.LetterMapper">
+<mapper namespace="withus.ex.mapper.LetterImgMapper">
 	<select id="selectImgList" resultType="withus.ex.vo.LetterImgVO">
 	<![CDATA[
-		select * from withus_img where wid = #{wid}
+		select * from withus_image where wid = #{wid}
 	]]>
 	</select>
 
