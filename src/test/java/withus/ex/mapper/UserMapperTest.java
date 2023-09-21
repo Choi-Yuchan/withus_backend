@@ -12,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import lombok.extern.slf4j.Slf4j;
 import withus.ex.service.ModifyUserService;
+import withus.ex.service.SignOutService;
 import withus.ex.vo.AuthVO;
 import withus.ex.vo.UsersVO;
 
@@ -21,9 +22,9 @@ public class UserMapperTest {
 
 	@Autowired
 	private UserMapper userMapper;
-
-	@Autowired
-	private ModifyUserService modifyUserService;
+//
+//	@Autowired
+//	private ModifyUserService modifyUserService;
 
 //	@Test
 //	@Disabled
@@ -59,20 +60,35 @@ public class UserMapperTest {
 ////		UsersVO user = userMapper.selectUserInfo(userNumber);
 //	}
 
+//	@Test
+//	void updateUserInfo() {
+//		int userNumber = 1;
+//
+//		// 기존 사용자 정보 가져오기
+//		UsersVO user = userMapper.selectUserInfo(userNumber);
+//
+//		// 사용자 정보 수정
+//		user.setUserName("허정식");
+//
+//		// 사용자 정보 업데이트
+//		modifyUserService.modifyUser(user);
+//
+//		System.out.println("Updated user: " + user.getUserNumber());
+//	}
+//	
+	
+	
+
+
+	
+	@Autowired // 회원정보 삭제
+	private SignOutService signOutService;
+	
 	@Test
-	void updateUserInfo() {
-		int userNumber = 1;
+	void deleteUser() {
+		int userNumber = 2;
+		signOutService.signOutUser(userNumber);
 
-		// 기존 사용자 정보 가져오기
-		UsersVO user = userMapper.selectUserInfo(userNumber);
-
-		// 사용자 정보 수정
-		user.setUserName("허정식");
-
-		// 사용자 정보 업데이트
-		modifyUserService.modifyUser(user);
-
-		System.out.println("Updated user: " + user.getUserNumber());
 	}
 
 }

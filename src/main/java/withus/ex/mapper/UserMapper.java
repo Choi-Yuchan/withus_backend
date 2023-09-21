@@ -21,6 +21,9 @@ public interface UserMapper {
     
     int updateUserInfo(UsersVO modifiedUser); //회원정보 수정
     
+    public int deleteUser(int userNumber); // 회원탈퇴
+    
+    
     
     
     //회원가입 + 권한설정

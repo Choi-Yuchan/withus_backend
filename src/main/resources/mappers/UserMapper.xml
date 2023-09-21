@@ -30,7 +30,7 @@
         SELECT * FROM withus_users WHERE USER_NUMBER = #{userNumber}
         ]]>
 	</select>
-	
+
 	<insert id="insert" parameterType="withus.ex.vo.UsersVO">
         <![CDATA[
             INSERT INTO withus_users (
@@ -78,7 +78,7 @@
 
 
 	<!-- 회원 정보 수정 -->
-	<update id="updateUserInfo" >
+	<update id="updateUserInfo">
 	<![CDATA[
 		update withus_users SET	user_name = #{userName},
 		user_id = #{userId},
@@ -92,5 +92,16 @@
 		WHERE user_number = #{userNumber}
 	]]>
 	</update>
-</mapper>
+
+
+	<delete id="deleteUser">
+    <![CDATA[   
+    BEGIN
+     DELETE FROM withus_auth WHERE user_number =#{userNumber}; 
+     DELETE FROM withus_users WHERE user_number =#{userNumber}; 
+     END;
+      ]]>
+	</delete>
+
+	</mapper>
 	
