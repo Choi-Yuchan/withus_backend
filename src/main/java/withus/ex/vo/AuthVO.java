@@ -13,7 +13,7 @@ import lombok.ToString;
 @ToString
 
 public class AuthVO {
-	private String userNumber;
+	private int userNumber;
 	private String authority;
 
 }
