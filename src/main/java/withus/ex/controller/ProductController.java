@@ -29,7 +29,7 @@ import withus.ex.vo.ProductImgVO;
 import withus.ex.vo.ProductVO;
 import withus.ex.vo.UsersVO;
 
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin(origins = "*")
 @Controller
 @RequestMapping("/product")
 @Log4j2

@@ -28,9 +28,13 @@ public class CartServiceImpl implements CartService{
 		return cartMapper.deleteCart(cart);
 	}
 	
-	
-	
-	
+	//장바구니 추가
+	@Override
+    public void addCart(CartVO cartItem) {
+        cartMapper.addCart(cartItem);
+    }
+
+
 }
 
 

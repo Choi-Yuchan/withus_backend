@@ -11,7 +11,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import withus.ex.security.CustomUserDetailsService;
@@ -23,11 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private CustomUserDetailsService customUserDetailsService;
-
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+	
 
 	@Bean
 	public SecurityAuthenticationFilter securityAuthenticationFilter() {
@@ -47,17 +42,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override // 권한인증 설정해주기
 	protected void configure(HttpSecurity http) throws Exception {
-		http.cors().and() // CorsFilter 활성화
-				.csrf().disable() // CSRF 보안 비활성화
-				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // 세션 사용 안 함
-				.and().authorizeRequests().antMatchers(HttpMethod.POST, "/login", "/signUp").permitAll() // POST 요청에
-																											// 대해서만 허용
-				.antMatchers("/**").permitAll() // 나머지 요청은 인증이 필요
-				.and().formLogin().disable(); // 폼 로그인 사용 안 함
-
-		http.addFilterBefore(securityAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+		http
+		.cors().and() // CorsFilter 활성화
+		.csrf().disable() // CSRF 보안 비활성화
+		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // 세션 사용 안 함
+		.and()
+		.authorizeRequests()
+		.antMatchers(HttpMethod.POST, "/login","/signUp").permitAll() // POST 요청에 대해서만 허용
+        .antMatchers("/**").permitAll() // 나머지 요청은 인증이 필요
+		.and()
+		.formLogin().disable(); // 폼 로그인 사용 안 함
+	  
+	http.addFilterBefore(securityAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
 	}
+	
+	
 
 	
 

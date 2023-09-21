@@ -13,13 +13,13 @@ class TestAuthVO {
         System.out.println("AuthVO object: " + auth);
     
         // 값을 수정함
-        auth.setUserId("newUserId");
+        auth.setUserNumber("newUsernumber");
         auth.setAuthority("ROLE_USER");
         
         System.out.println("Updated AuthVO object: " + auth);
 
         // 수정된 값과 예상한 값이 같은지 확인
-        assertEquals("newUserId", auth.getUserId());
+        assertEquals("newUserNumber", auth.getUserNumber());
         assertEquals("ROLE_USER", auth.getAuthority());
     }
 }

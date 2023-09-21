@@ -13,12 +13,49 @@
         l.wname, 
         l.wprice, 
         p.wcount, 
-        l.wprice*p.wcount as total_price   
+        l.wprice*p.wcount as total_price,
+        p.onumber 
 		from withus_orderitem p, withus_letter l 
 		where p.wid = l.wid
         ]]>
 	</select>	
+	
+		<insert id="insertItem" parameterType="withus.ex.vo.OrderVO">
+        <![CDATA[
+            INSERT INTO withus_orderitem (
+                order_itemnumber,
+                wid,
+                wcount,
+                onumber
+            )
+            VALUES (
+                #{order_itemnumber},
+                #{wid},
+                #{wcount},
+                #{onumber}
+            )
+        ]]>
+	</insert>
 
+	<!-- 페이징 -->
+	<select id="getTotalCount" resultType="int">
+      <![CDATA[
+          select count(*) from withus_letter
+      ]]>
+	</select>
+	
+	<select id="getOrderPaging" resultType="withus.ex.vo.OrderPageItemVO">
+      <![CDATA[
+        SELECT * FROM (
+              SELECT ROWNUM AS RNUM, A.* FROM (
+                       SELECT
+                             *
+                         FROM
+                             withus_orderitem
+             ) A WHERE ROWNUM <= #{pageNum} * #{amount}
+         ) WHERE RNUM > (#{pageNum}-1) * #{amount}
+      ]]>
+	</select>
 	
 
 	

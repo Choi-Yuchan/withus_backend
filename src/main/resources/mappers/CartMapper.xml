@@ -30,10 +30,23 @@
       <result property="total_price" column="total_price" />
    </resultMap>
    
-   <delete id="deleteCart">
+
+	
+	<delete id="deleteCart">
     <![CDATA[
-      delete from withus_cart where wid =#{wid}
-   ]]>
-	</delete>
+        DELETE FROM withus_cart WHERE cnumber = #{cnumber}
+    ]]>
+</delete>
+	
+
+	
+	<insert id="addCart">
+	<![CDATA[
+		insert into withus_cart (cnumber, wid,  wcount)
+	   		values (withus_cart_seq.nextval, #{wid}, #{wcount})
+	]]>
+	</insert>
+	
+	
 
 </mapper>
