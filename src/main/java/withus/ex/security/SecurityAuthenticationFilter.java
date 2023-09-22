@@ -57,7 +57,6 @@ public class SecurityAuthenticationFilter extends OncePerRequestFilter {
             String username = jsonNode.get("username").asText();
             String password = jsonNode.get("password").asText();
 
-
             if (username != null && !username.isEmpty()) {
                 UserDetails authentication = customUserDetailsService.loadUserByUsername(username);
 

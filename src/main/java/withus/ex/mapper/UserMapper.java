@@ -8,8 +8,6 @@ import withus.ex.vo.UsersVO;
 public interface UserMapper {
 	void insert(UsersVO user); // 회원가입
 
-	void insertAuth(UsersVO user); // 회원가입시 권한부여
-
 	public UsersVO getUser(String userId); // 권한있는지조회
 
 	UsersVO selectUserInfo(int userNumber); // 회원정보조회
