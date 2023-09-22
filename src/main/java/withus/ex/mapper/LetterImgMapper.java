@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import withus.ex.vo.LetterImgVO;
-import withus.ex.vo.LetterVO;
 
 @Mapper
 public interface LetterImgMapper {

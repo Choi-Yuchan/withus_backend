@@ -1,40 +1,23 @@
 package withus.ex.controller;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.siot.IamportRestClient.IamportClient;
-import com.siot.IamportRestClient.exception.IamportResponseException;
-import com.siot.IamportRestClient.response.IamportResponse;
-import com.siot.IamportRestClient.response.Payment;
-
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
-import withus.ex.service.CartService;
+import withus.ex.kakaoPay.KakaoCancelResponse;
+import withus.ex.kakaoPay.KakaoReadyResponse;
 import withus.ex.service.KakaoPayService;
 import withus.ex.service.OrderService;
-import withus.ex.vo.KakaoApproveResponse;
-import withus.ex.vo.KakaoCancelResponse;
-import withus.ex.vo.KakaoReadyResponse;
+import withus.ex.kakaoPay.KakaoApproveResponse;
 import withus.ex.vo.OrderPageItemVO;
 
 @CrossOrigin(origins = "*")
@@ -48,9 +31,6 @@ public class KakaoPayController{
 	
 	@Autowired
     private final KakaoPayService kakaoPayService;
-	
-	@Autowired
-	private CartService cartService;
     
     /**
      * 결제요청
@@ -61,16 +41,6 @@ public class KakaoPayController{
         return kakaoPayService.kakaoPayReady();
     }
     
-//    /**
-//     * 결제 성공
-//     */
-//    @GetMapping("/success")
-//    public ResponseEntity<KakaoApproveResponse> afterPayRequest(@RequestParam("pg_token") String pgToken) {
-//    	
-//        KakaoApproveResponse kakaoApprove = kakaoPayService.ApproveResponse(pgToken);
-//        
-//        return new ResponseEntity<>(kakaoApprove, HttpStatus.OK);
-//    }
     
     /**
      * 결제 성공

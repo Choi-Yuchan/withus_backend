@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import withus.ex.mapper.CartMapper;
-import withus.ex.page.Criteria;
 import withus.ex.vo.CartVO;
-import withus.ex.vo.LetterVO;
 
 @Service
 public class CartServiceImpl implements CartService{
@@ -28,9 +26,13 @@ public class CartServiceImpl implements CartService{
 		return cartMapper.deleteCart(cart);
 	}
 	
-	
-	
-	
+	//장바구니 추가
+	@Override
+    public void addCart(CartVO cartItem) {
+        cartMapper.addCart(cartItem);
+    }
+
+
 }
 
 

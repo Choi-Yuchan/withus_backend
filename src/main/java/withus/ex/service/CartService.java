@@ -2,9 +2,7 @@ package withus.ex.service;
 
 import java.util.List;
 
-import withus.ex.page.Criteria;
 import withus.ex.vo.CartVO;
-import withus.ex.vo.LetterVO;
 
 
 public interface CartService {
@@ -13,7 +11,12 @@ public interface CartService {
 	public List<CartVO> getCartList();
 	
 	//장바구니 삭제
-	public int remove(CartVO cartVO);
+	public int remove(CartVO cart);
+	
+	// 카트 담기
+	public void addCart(CartVO cartitem);
+	
+
 }
 
 
