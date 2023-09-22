@@ -110,7 +110,6 @@ public class UserMapperTest {
     	
     	
     }
-<<<<<<< HEAD
     
     @Test
     void testGetUser() {
@@ -149,7 +148,6 @@ public class UserMapperTest {
 		userMapper.updateUserInfo(modifiedUser);
     }
     */
-=======
  // 회원정보 삭제
     @Autowired 
     private SignOutService signOutService;
@@ -161,5 +159,4 @@ public class UserMapperTest {
 
     }
 
->>>>>>> c50f895c102da3e760261c7fad5e19a4ea109bbe
 }

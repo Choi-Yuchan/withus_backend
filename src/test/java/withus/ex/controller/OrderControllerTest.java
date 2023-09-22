@@ -28,7 +28,7 @@ class OrderControllerTest {
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
-                //.andExpect(MockMvcResultMatchers.jsonPath("$.userNumber").value(userNumber))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.userNumber").value(userNumber))
                 .andDo(MockMvcResultHandlers.print());
 	}
 

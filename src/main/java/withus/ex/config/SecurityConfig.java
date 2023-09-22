@@ -25,17 +25,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private CustomUserDetailsService customUserDetailsService;
 	
 	 @Bean
-<<<<<<< HEAD
 	    public PasswordEncoder passwordEncoder() {
 	        return new BCryptPasswordEncoder();
 	    }
 	
-=======
-     public PasswordEncoder passwordEncoder() {
-         return new BCryptPasswordEncoder();
-     }
-
->>>>>>> c50f895c102da3e760261c7fad5e19a4ea109bbe
 	@Bean
 	public SecurityAuthenticationFilter securityAuthenticationFilter() {
 		return new SecurityAuthenticationFilter();
