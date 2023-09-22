@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import withus.ex.mapper.CartMapper;
-import withus.ex.page.Criteria;
 import withus.ex.vo.CartVO;
-import withus.ex.vo.LetterVO;
 
 @Service
 public class CartServiceImpl implements CartService{

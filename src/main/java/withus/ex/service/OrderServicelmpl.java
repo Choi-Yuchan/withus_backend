@@ -1,6 +1,5 @@
 package withus.ex.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +35,7 @@ public class OrderServicelmpl implements OrderService{
 
 	@Override
 	public List<OrderPageItemVO> getListOrPaging(Criteria cri) {
+		log.info("getListOrderPaging().. " + cri);
 		return orderMapper.getOrderPaging(cri);
 	}
 
