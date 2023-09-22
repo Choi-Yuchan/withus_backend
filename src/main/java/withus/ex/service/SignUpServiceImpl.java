@@ -23,12 +23,12 @@ public class SignUpServiceImpl implements SignUpService {
     @Override
     public void signup(UsersVO user) {
         log.info("signup service().." + user);
+   
         // 비밀번호를 암호화하여 저장
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
         
         userMapper.insert(user);
-        userMapper.insertAuth(user);
 	
 		
 	}
