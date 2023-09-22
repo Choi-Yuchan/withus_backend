@@ -1,8 +1,9 @@
-package withus.ex.vo;
+package withus.ex.kakaoPay;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import withus.ex.vo.AmountVO;
 
 /**
 * 결제 승인 요청 시 사용
@@ -20,7 +21,7 @@ public class KakaoApproveResponse {
     private String partner_order_id; // 가맹점 주문 번호
     private String partner_user_id; // 가맹점 회원 id
     private String payment_method_type; // 결제 수단
-    private Amount amount; // 결제 금액 정보
+    private AmountVO amount; // 결제 금액 정보
     private String item_name; // 상품명
     private String item_code; // 상품 코드
     private int quantity; // 상품 수량

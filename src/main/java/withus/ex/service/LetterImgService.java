@@ -3,7 +3,6 @@ package withus.ex.service;
 import java.util.List;
 
 import withus.ex.vo.LetterImgVO;
-import withus.ex.vo.LetterVO;
 
 
 public interface LetterImgService {

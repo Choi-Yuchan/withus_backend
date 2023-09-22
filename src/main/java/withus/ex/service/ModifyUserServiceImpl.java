@@ -17,6 +17,7 @@ public class ModifyUserServiceImpl implements ModifyUserService {
 //회원정보수정	
 	@Override
 	public int modifyUser(UsersVO modifiedUser) {
+		log.info("modifyUser()... " + modifiedUser);
 		return userMapper.updateUserInfo(modifiedUser);
 		
 	}

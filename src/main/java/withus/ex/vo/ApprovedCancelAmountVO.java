@@ -12,7 +12,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class ApprovedCancelAmount {
+public class ApprovedCancelAmountVO {
 	
     private int total; // 이번 요청으로 취소된 전체 금액
     private int tax_free; // 이번 요청으로 취소된 비과세 금액

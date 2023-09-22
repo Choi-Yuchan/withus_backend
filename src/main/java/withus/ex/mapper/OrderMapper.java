@@ -5,8 +5,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import withus.ex.page.Criteria;
-import withus.ex.vo.CartVO;
-import withus.ex.vo.LetterVO;
 import withus.ex.vo.OrderPageItemVO;
 import withus.ex.vo.OrderVO;
 

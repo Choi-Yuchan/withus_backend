@@ -5,9 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import withus.ex.page.Criteria;
 import withus.ex.vo.CartVO;
-import withus.ex.vo.LetterVO;
 
 @Mapper
 public interface CartMapper {

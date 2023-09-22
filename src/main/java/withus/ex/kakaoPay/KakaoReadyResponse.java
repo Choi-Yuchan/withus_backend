@@ -1,4 +1,4 @@
-package withus.ex.vo;
+package withus.ex.kakaoPay;
 
 import lombok.Getter;
 import lombok.Setter;
