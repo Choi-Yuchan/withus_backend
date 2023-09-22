@@ -1,4 +1,4 @@
-package withus.ex.mapper;
+package withus.ex.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -8,26 +8,28 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import withus.ex.mapper.OrderMapper;
 import withus.ex.page.Criteria;
 import withus.ex.vo.OrderPageItemVO;
 import withus.ex.vo.OrderVO;
 
 @SpringBootTest
-class OrderMapperTest {
-	
+class OrderServicelmplTest {
+
 	@Autowired
-	private OrderMapper orderMapper;
+	private OrderService orderService;
 
 	@Test
 	void testGetGoodsInfo() {
-		System.out.println("Order Mapper" + orderMapper);
-		System.out.println("Order List" + orderMapper.getGoodsInfo());
+		System.out.println("Order Service" + orderService);
+		System.out.println("Order List" + orderService.getOrderInfo());
 		
 		//반복문으로 리스트 불러오기
-		for(OrderPageItemVO vo : orderMapper.getGoodsInfo()) {
+		for(OrderPageItemVO vo : orderService.getOrderInfo()) {
 			System.out.println("Order: " + vo);
 		}
 	}
+	
 	
 	@Test
 	void testInsertItem() {
@@ -42,28 +44,31 @@ class OrderMapperTest {
 		order.setWcount(wcount);
 		order.setOnumber(onumber);
 		
-		int result = 0;
-		try {
-			result = orderMapper.insertItem(order);
-		} catch (Exception e) {
-			System.out.println("에러 발생");
-		}
-		
-		System.out.println("결과 : " + result);
+//		int result = 0;
+//		try {
+//			result = orderService.enrollItem(order);
+//		} catch (Exception e) {
+//			System.out.println("에러 발생");
+//		}
+//		
+//		System.out.println("결과 : " + result);
 	}
 	
-	/* 주문 목록 테스트 */
+	
+	
 	@Test
 	public void testGetOrderPaging() throws Exception{
 		
 		Criteria cri = new Criteria(1,10);	// 3페이지 & 10개 행 표시
 		
-		List<OrderPageItemVO> list = orderMapper.getOrderPaging(cri);
+		List<OrderPageItemVO> list = orderService.getListOrPaging(cri);
 		
 		for(int i = 0; i < list.size(); i++) {
 			System.out.println("list" + i + ".........." + list.get(i));
 		}
 		
 	}
+	
+	
 
 }

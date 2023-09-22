@@ -19,8 +19,13 @@
 		<collection property="authList" resultMap="authMap"></collection>
 	</resultMap>
 
-	<resultMap id="authMap" type="withus.ex.vo.AuthVO">
+	<!-- <resultMap id="authMap" type="withus.ex.vo.AuthVO">
 		<result property="userId" column="user_id" />
+		<result property="authority" column="authority" />
+	</resultMap> -->
+	
+	<resultMap id="authMap" type="withus.ex.vo.AuthVO">
+		<result property="userNumber" column="user_Number" />
 		<result property="authority" column="authority" />
 	</resultMap>
 

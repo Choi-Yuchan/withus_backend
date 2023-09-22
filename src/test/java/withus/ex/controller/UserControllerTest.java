@@ -27,31 +27,31 @@ class UserControllerTest {
     @Autowired
     private MockMvc mockMvc;
     
-//    @Test
-//    void testsignup() throws Exception {
-//       UsersVO user = new UsersVO();   
-//       user.setUserNumber(6);
-//       user.setUserName("Test4");
-//       user.setUserId("Test4");
-//       user.setPassword("Test4");
-//       user.setPhoneNumber("1234567890");
-//       user.setAddr1("서울시");
-//       user.setAddr2("강동구");
-//       user.setAddr3("어딘가");
-//       user.setBirth(new Date(2000 - 1900, 9, 25)); // Month starts from 0
-//       user.setGender("M");
-//       
-//       String jsonStr = new ObjectMapper().writeValueAsString(user);
-//       
-//       log.info(jsonStr);
-//       
-//       mockMvc.perform(post("/user/signup")
-//             .contentType(MediaType.APPLICATION_JSON)
-//             .content(jsonStr))
-//          .andExpect(status().is(200))
-//          .andDo(MockMvcResultHandlers.print());
-//       
-//    } 
+    @Test
+    void testsignup() throws Exception {
+       UsersVO user = new UsersVO();   
+       user.setUserNumber(6);
+       user.setUserName("Test4");
+       user.setUserId("Test4");
+       user.setPassword("Test4");
+       user.setPhoneNumber("1234567890");
+       user.setAddr1("서울시");
+       user.setAddr2("강동구");
+       user.setAddr3("어딘가");
+       user.setBirth(new Date(2000 - 1900, 9, 25)); // Month starts from 0
+       user.setGender("M");
+       
+       String jsonStr = new ObjectMapper().writeValueAsString(user);
+       
+       log.info(jsonStr);
+       
+       mockMvc.perform(post("/user/signup")
+             .contentType(MediaType.APPLICATION_JSON)
+             .content(jsonStr))
+          .andExpect(status().is(200))
+          .andDo(MockMvcResultHandlers.print());
+       
+    } 
     
     @Test
     void testGetUserInfo() throws Exception {

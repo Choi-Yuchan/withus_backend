@@ -1,21 +1,26 @@
-package withus.ex.mapper;
+package withus.ex.service;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import withus.ex.mapper.LetterMapper;
 import withus.ex.vo.LetterVO;
 
 @SpringBootTest
-class LetterMapperTest {
-	
+class LetterServiceImplTest {
+
 	@Autowired
-    private LetterMapper letterMapper;
+    private LetterService letterService;
 
     @Test
     public void SelectLeList() {
     	int wid = 1;
-    	LetterVO letter = letterMapper.selectLeInfo(wid);
+    	LetterVO letter = letterService.getLeInfoList(wid);
     	System.out.println("===");
     	System.out.println(letter);
     	System.out.println("===");
@@ -23,12 +28,13 @@ class LetterMapperTest {
     
     @Test
     public void testSelectLeList() {
-    	System.out.println("Letter Mapper" + letterMapper);
-    	System.out.println("Letter List" + letterMapper.selectLeList().size());
+    	System.out.println("Letter Mapper" + letterService);
+    	System.out.println("Letter List" + letterService.getLeList().size());
     	
     	//반복문으로 리스트 불러오기
-    	for(LetterVO vo : letterMapper.selectLeList()) {
+    	for(LetterVO vo : letterService.getLeList()) {
     		System.out.println("Letter: " + vo);
     	}
     }
+
 }
