@@ -1,25 +1,20 @@
 package withus.ex.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
 import withus.ex.service.CartService;
-import withus.ex.service.GetUserInfoService;
 import withus.ex.vo.CartVO;
-import withus.ex.vo.UsersVO;
+
 @Slf4j
 @CrossOrigin("http://localhost:3000")
 @RestController
@@ -29,8 +24,6 @@ public class CartController {
 	@Autowired
 	private CartService cartService;
 	
-	@Autowired
-	private GetUserInfoService getUserInfoService;
 	
 	//카트리스트
 	@GetMapping("/cartList/{userNumber}")
@@ -41,16 +34,6 @@ public class CartController {
 	}
 	
 
-
-//	@DeleteMapping("/delete/{cnumber}")
-//	public String delete(@PathVariable("cnumber") int cnumber) {
-//     CartVO cart = new CartVO();
-//	    cart.setCnumber(cnumber);
-//	    int rn = cartService.remove(cart);
-//	    return "SUCCESS";
-//	
-//	}
-	
 	
 	//복수의 상품 삭제
 	@DeleteMapping("/delete")
@@ -64,6 +47,7 @@ public class CartController {
 	        CartVO cart = new CartVO();
 	        cart.setCnumber(cnumber);
 	        int rn = cartService.remove(cart);
+	        log.info("rn: " +rn);
 	    }
 
 	    return "SUCCESS";

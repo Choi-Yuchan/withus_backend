@@ -4,13 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -86,6 +83,7 @@ public class OrderController{
 	//페이징처리
 	@GetMapping("/list")	//get 메소드로 처리하도록
 	public String list(Criteria cri, Model model) {
+		log.info("cri: " +cri+ "model: " + model);
 		model.addAttribute("OrderList", orderService.getListOrPaging(cri)); //글 10개 가져오는 부분
 		
 		int total = orderService.getTotal();
