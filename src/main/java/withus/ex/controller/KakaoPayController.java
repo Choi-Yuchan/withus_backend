@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
+import withus.ex.kakaoPay.KakaoCancelResponse;
+import withus.ex.kakaoPay.KakaoReadyResponse;
 import withus.ex.service.KakaoPayService;
 import withus.ex.service.OrderService;
-import withus.ex.vo.KakaoApproveResponse;
-import withus.ex.vo.KakaoCancelResponse;
-import withus.ex.vo.KakaoReadyResponse;
+import withus.ex.kakaoPay.KakaoApproveResponse;
 import withus.ex.vo.OrderPageItemVO;
 
 @CrossOrigin(origins = "*")

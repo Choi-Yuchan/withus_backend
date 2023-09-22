@@ -10,9 +10,9 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import lombok.RequiredArgsConstructor;
-import withus.ex.vo.KakaoApproveResponse;
-import withus.ex.vo.KakaoCancelResponse;
-import withus.ex.vo.KakaoReadyResponse;
+import withus.ex.kakaoPay.KakaoCancelResponse;
+import withus.ex.kakaoPay.KakaoReadyResponse;
+import withus.ex.kakaoPay.KakaoApproveResponse;
 
 
 

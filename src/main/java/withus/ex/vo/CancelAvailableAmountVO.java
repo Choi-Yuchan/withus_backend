@@ -11,7 +11,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class CancelAvailableAmount {
+public class CancelAvailableAmountVO {
 	
     private int total; // 전체 취소 가능 금액
     private int tax_free; // 취소 가능 비과세 금액

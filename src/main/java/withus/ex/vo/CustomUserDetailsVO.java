@@ -38,6 +38,7 @@ public class CustomUserDetailsVO implements UserDetails {
 	public void setAuthorities(UsersVO userVO) {
 
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+		log.info("authorities" + authorities);
 
 		for (AuthVO auth : userVO.getAuthList()) {
 			authorities.add(new SimpleGrantedAuthority(auth.getAuthority()));
