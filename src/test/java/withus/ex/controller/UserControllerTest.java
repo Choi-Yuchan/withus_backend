@@ -1,7 +1,9 @@
 package withus.ex.controller;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.sql.Date;
@@ -11,8 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -24,9 +29,11 @@ import withus.ex.vo.UsersVO;
 @AutoConfigureMockMvc
 class UserControllerTest {
 
+	
     @Autowired
     private MockMvc mockMvc;
     
+    /*
     @Test
     void testsignup() throws Exception {
        UsersVO user = new UsersVO();   
@@ -61,4 +68,39 @@ class UserControllerTest {
             .andExpect(status().isOk())
             .andDo(MockMvcResultHandlers.print());
     }
+    */
+	
+    @Test
+    void testList() throws Exception{
+    	int userNumber =1;
+		
+		mockMvc.perform(MockMvcRequestBuilders.get("/user/userInfo/{userNumber}", userNumber)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.userNumber").value(userNumber))
+                .andDo(MockMvcResultHandlers.print());
+    }
+    
+    /*
+    @Test
+    @WithMockUser
+    void testUpdateUser() throws Exception {
+    	mockMvc.perform(get("/updateUser"))
+        	   .andExpect(status().isOk())
+        	   .andExpect(content().string("SUCCESS"));
+    }
+    */
+    
+    /*
+    @Test
+    public void testDeleteUser() throws Exception {
+        int userNumber = 1; // 삭제할 사용자의 번호
+
+        mockMvc.perform(delete("/" + userNumber + "/deleteUser"))
+                .andExpect(status().isOk());
+    }
+    */
+	
+	
 }

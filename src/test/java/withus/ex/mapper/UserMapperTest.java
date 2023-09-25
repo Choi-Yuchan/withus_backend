@@ -9,11 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-<<<<<<< HEAD
 import withus.ex.vo.AuthVO;
-=======
 import withus.ex.service.SignOutService;
->>>>>>> c50f895c102da3e760261c7fad5e19a4ea109bbe
 import withus.ex.vo.UsersVO;
 
 @SpringBootTest
@@ -120,7 +117,7 @@ public class UserMapperTest {
     	System.out.println("===");
     }
     
-    /*
+    
     @Test
     void testSelectUserInfo() {
     	UsersVO user = new UsersVO();
@@ -129,7 +126,7 @@ public class UserMapperTest {
     	System.out.println(users);
     }
     
-    
+    /*
     @Test
     void testUpdateUserInfo(UsersVO modifiedUser) {
     	UsersVO users = new UsersVO();

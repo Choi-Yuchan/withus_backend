@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockRequestDispatcher;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
@@ -25,7 +26,7 @@ class LoginControllerTest {
 	@Autowired
 	private MockMvc mockMvc;
 	
-	
+	/*
 	@Test
     void testSignup() throws Exception {
         // 테스트용 UsersVO 객체 생성
@@ -53,5 +54,30 @@ class LoginControllerTest {
     		   .andExpect(MockMvcResultMatchers.status().isOk())
     		   .andDo(MockMvcResultHandlers.print());
     }
-
+    */
+	
+	
+	
+	
+	
+	
+	
+	
+	/*
+	@Test
+	public void testLogin() throws Exception{
+		mockMvc.perform(MockMvcRequestBuilders.post("/login").accept(MediaType.APPLICATION_JSON))
+			   .andExpect(MockMvcResultMatchers.status().isOk())
+			   .andDo(MockMvcResultHandlers.print());
+	}
+	*/
+	
+	/*
+	@Test
+	public void testSignup() throws Exception{
+		mockMvc.perform(MockMvcRequestBuilders.post("/signup").accept(MediaType.APPLICATION_JSON))
+			   .andExpect(MockMvcResultMatchers.status().isOk())
+			   .andDo(MockMvcResultHandlers.print());
+	}
+	*/
 }

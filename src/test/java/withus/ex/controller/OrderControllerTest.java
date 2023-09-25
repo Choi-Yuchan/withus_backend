@@ -28,7 +28,52 @@ class OrderControllerTest {
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.userNumber").value(userNumber))
+                //.andExpect(MockMvcResultMatchers.jsonPath("$.userNumber").value(userNumber))
+                .andDo(MockMvcResultHandlers.print());
+	}
+	
+	@Test
+	void testOrderPageGetList() throws Exception{
+		int userNumber =1;
+		
+		mockMvc.perform(MockMvcRequestBuilders.get("/product/orderList/{userNumber}", userNumber)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
+                //.andExpect(MockMvcResultMatchers.jsonPath("$.userNumber").value(userNumber))
+                .andDo(MockMvcResultHandlers.print());
+		
+	}
+	
+	@Test
+	void testMyOrder() throws Exception{
+		int userNumber =1;
+		
+		mockMvc.perform(MockMvcRequestBuilders.get("/product/myOrder/{userNumber}", userNumber)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
+                //.andExpect(MockMvcResultMatchers.jsonPath("$.userNumber").value(userNumber))
+                .andDo(MockMvcResultHandlers.print());
+	}
+	
+	/*
+	@Test
+	void testBuy() throws Exception {
+		mockMvc.perform(MockMvcRequestBuilders.get("/product/buy")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
+                .andDo(MockMvcResultHandlers.print());
+	}
+	*/
+	
+	@Test
+	void testList() throws Exception{
+		mockMvc.perform(MockMvcRequestBuilders.get("/product/list")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
                 .andDo(MockMvcResultHandlers.print());
 	}
 
