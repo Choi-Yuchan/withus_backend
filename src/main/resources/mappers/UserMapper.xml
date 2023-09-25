@@ -19,8 +19,13 @@
 		<collection property="authList" resultMap="authMap"></collection>
 	</resultMap>
 
+<<<<<<< HEAD
 	<!-- <resultMap id="authMap" type="withus.ex.vo.AuthVO">
 		<result property="userId" column="user_id" />
+=======
+	<resultMap id="authMap" type="withus.ex.vo.AuthVO">
+		<result property="userNumber" column="user_number" />
+>>>>>>> 6e0f10f5c0fa76b77013186feed3a9696da11ab8
 		<result property="authority" column="authority" />
 	</resultMap> -->
 	
@@ -65,13 +70,6 @@
             )
         ]]>
 	</insert>
-
-	<insert id="insertAuth" parameterType="withus.ex.vo.UsersVO">
-        <![CDATA[
-      		insert into withus_auth(user_number, authority) select user_number, 'ROLE_USER' from withus_users where user_id=#{userId}
-        ]]>
-	</insert>
-
 
 	<!-- 로그인 권한조회 -->
 	<select id="getUser" resultMap="usersMap">
